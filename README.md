@@ -6,7 +6,8 @@ Personal portfolio website for Célia Gonçalves, Senior Product Owner & Test Le
 
 Static site built with vanilla HTML5, CSS3, and JavaScript — no frameworks or dependencies beyond Font Awesome icons.
 
-**Live:** [celiaagoncalves.github.io/portfolio](https://celiaagoncalves.github.io/portfolio) *(or your custom domain)*
+**Live:** [https://celiaagoncalves.github.io/](https://celiaagoncalves.github.io/)
+
 
 ## Features
 
