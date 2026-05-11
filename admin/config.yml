@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: celiaagoncalves/celiaagoncalves.github.io
+  branch: master
+  base_url: https://oauth.sveltia.com
+  app_id: Ov23lilq4SfQrjTkR95r
+
+site_url: https://celiaagoncalves.github.io
+locale: pt
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: posts
+    label: Blog Posts
+    label_singular: Post
+    folder: posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - label: Título
+        name: title
+        widget: string
+      - label: Data
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        default: ""
+      - label: Resumo
+        name: summary
+        widget: text
+        hint: "Breve descrição para a listagem de posts (1-2 frases)"
+      - label: Tags
+        name: tags
+        widget: list
+        hint: "Ex: Product Ownership, Agile, QA"
+      - label: Conteúdo
+        name: body
+        widget: markdown

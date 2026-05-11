@@ -9,6 +9,7 @@ const T = {
     'nav.education':  'Education',
     'nav.languages':  'Languages',
     'nav.contact':    'Contact',
+    'nav.blog':       'Blog',
 
     'hero.eyebrow': 'Portfolio',
     'hero.tag1':    'Mission-Critical Systems',
@@ -125,6 +126,11 @@ const T = {
     'contact.intro':   'Open to discussions on defense systems, mission assurance, software quality, and agile delivery.',
 
     'footer.copy': 'Célia Gonçalves · 2025',
+
+    'blog.heading': 'Blog',
+    'blog.loading': 'Loading posts…',
+    'blog.read':    'Read more →',
+    'blog.empty':   'No posts yet. Check back soon.',
   },
 
   pt: {
@@ -134,6 +140,7 @@ const T = {
     'nav.education':  'Educação',
     'nav.languages':  'Idiomas',
     'nav.contact':    'Contacto',
+    'nav.blog':       'Blog',
 
     'hero.eyebrow': 'Portfolio',
     'hero.tag1':    'Sistemas Críticos',
@@ -250,6 +257,11 @@ const T = {
     'contact.intro':   'Disponível para discussões sobre sistemas de defesa, mission assurance, qualidade de software e entrega ágil.',
 
     'footer.copy': 'Célia Gonçalves · 2025',
+
+    'blog.heading': 'Blog',
+    'blog.loading': 'A carregar posts…',
+    'blog.read':    'Ler mais →',
+    'blog.empty':   'Ainda sem posts. Volta em breve.',
   }
 };
 
@@ -276,6 +288,9 @@ function applyLang(l) {
     const key = el.dataset.i18n;
     if (T[l][key] !== undefined) el.innerHTML = T[l][key];
   });
+
+  // Re-render blog cards (dates localise, read-more text changes)
+  if (window.__posts) renderBlogGrid(document.getElementById('blogGrid'));
 }
 
 // Dropdown open/close
@@ -330,6 +345,112 @@ const skillObserver = new IntersectionObserver((entries) => {
 fills.forEach(f => skillObserver.observe(f));
 
 /* ============================================================
+   Blog — GitHub API + marked.js
+   ============================================================ */
+const REPO_API = 'https://api.github.com/repos/celiaagoncalves/celiaagoncalves.github.io/contents/posts';
+
+function parsePost(text, filename) {
+  const slug = filename.replace(/\.md$/, '');
+  const fm = {};
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  let body = text;
+  if (match) {
+    match[1].split('\n').forEach(line => {
+      if (/^\s*-\s/.test(line)) return;
+      const i = line.indexOf(':');
+      if (i === -1) return;
+      fm[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^['"]|['"]$/g, '');
+    });
+    body = match[2];
+  }
+  return { slug, title: fm.title || slug, date: fm.date || '', summary: fm.summary || '', body };
+}
+
+function formatPostDate(dateStr) {
+  if (!dateStr) return '';
+  try {
+    return new Date(dateStr + 'T12:00:00').toLocaleDateString(
+      lang === 'pt' ? 'pt-PT' : 'en-GB',
+      { day: 'numeric', month: 'long', year: 'numeric' }
+    );
+  } catch { return dateStr; }
+}
+
+function renderBlogGrid(grid) {
+  if (!window.__posts || !window.__posts.length) return;
+  grid.innerHTML = window.__posts.map(p => `
+    <article class="blog__card" data-slug="${p.slug}" role="button" tabindex="0" aria-label="${p.title}">
+      <time class="blog__date">${formatPostDate(p.date)}</time>
+      <h3 class="blog__title">${p.title}</h3>
+      <p class="blog__summary">${p.summary}</p>
+      <span class="blog__read" aria-hidden="true">${T[lang]['blog.read']}</span>
+    </article>`).join('');
+
+  grid.querySelectorAll('.blog__card').forEach(card => {
+    card.addEventListener('click', () => openPost(card.dataset.slug));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPost(card.dataset.slug); }
+    });
+  });
+}
+
+async function openPost(slug) {
+  const post = (window.__posts || []).find(p => p.slug === slug);
+  if (!post) return;
+  document.getElementById('postTitle').textContent = post.title;
+  document.getElementById('postDate').textContent = formatPostDate(post.date);
+  if (!window.marked) await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
+  document.getElementById('postBody').innerHTML = window.marked.parse(post.body);
+  document.getElementById('blogOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+function closePost() {
+  document.getElementById('blogOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('blogOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePost();
+});
+document.getElementById('postClose').addEventListener('click', closePost);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePost(); });
+
+async function loadBlogPosts() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  try {
+    const res = await fetch(REPO_API, { headers: { Accept: 'application/vnd.github.v3+json' } });
+    if (!res.ok) { grid.innerHTML = ''; return; }
+    const files = await res.json();
+    const mdFiles = files
+      .filter(f => f.name.endsWith('.md'))
+      .sort((a, b) => b.name.localeCompare(a.name))
+      .slice(0, 3);
+    if (!mdFiles.length) {
+      grid.innerHTML = `<p class="blog__empty">${T[lang]['blog.empty']}</p>`;
+      return;
+    }
+    window.__posts = await Promise.all(
+      mdFiles.map(f => fetch(f.download_url).then(r => r.text()).then(t => parsePost(t, f.name)))
+    );
+    renderBlogGrid(grid);
+  } catch {
+    const g = document.getElementById('blogGrid');
+    if (g) g.innerHTML = '';
+  }
+}
+
+/* ============================================================
    Init
    ============================================================ */
 applyLang(lang);
+loadBlogPosts();
