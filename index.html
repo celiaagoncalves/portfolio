@@ -24,7 +24,7 @@
         <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
         <li><a href="#education"  data-i18n="nav.education">Education</a></li>
         <li><a href="#languages"  data-i18n="nav.languages">Languages</a></li>
-        <li><a href="#blog"       data-i18n="nav.blog">Blog</a></li>
+        <li><a href="blog.html"   data-i18n="nav.blog">Blog</a></li>
         <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="nav__actions">
@@ -33,7 +33,7 @@
             <span id="langLabel">EN</span>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
-          <ul class="lang__menu" role="listbox" id="langMenu">
+          <ul class="lang__menu" role="listbox" aria-label="Language" id="langMenu">
             <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
             <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
           </ul>
@@ -396,24 +396,11 @@
     </div>
   </section>
 
-  <!-- Blog -->
-  <section class="section section--soft" id="blog">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">06</span>
-        <h2 data-i18n="blog.heading">Blog</h2>
-      </div>
-      <div class="blog__grid" id="blogGrid">
-        <p class="blog__loading" data-i18n="blog.loading">A carregar posts…</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact -->
   <section class="section section--dark" id="contact">
     <div class="container">
       <div class="section__header section__header--light">
-        <span class="section__label">07</span>
+        <span class="section__label">06</span>
         <h2 data-i18n="contact.heading">Contact</h2>
       </div>
       <p class="contact__intro" data-i18n="contact.intro">Open to discussions on defense systems, mission assurance, software quality, and agile delivery.</p>
@@ -450,18 +437,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Blog post modal -->
-  <div class="blog__overlay" id="blogOverlay" role="dialog" aria-modal="true" aria-labelledby="postTitle">
-    <article class="blog__post">
-      <button type="button" class="blog__post-close" id="postClose" aria-label="Fechar post">
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </button>
-      <time class="blog__post-date" id="postDate"></time>
-      <h2 class="blog__post-title" id="postTitle"></h2>
-      <div class="blog__post-body" id="postBody"></div>
-    </article>
-  </div>
 
   <script src="js/portfolio.js"></script>
 </body>

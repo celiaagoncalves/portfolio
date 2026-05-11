@@ -128,9 +128,12 @@ const T = {
     'footer.copy': 'Célia Gonçalves · 2025',
 
     'blog.heading': 'Blog',
+    'blog.eyebrow': 'Notes &amp; reflections',
+    'blog.intro':   'Reflections on product ownership, software quality, and the challenges of building reliable systems in regulated environments.',
     'blog.loading': 'Loading posts…',
     'blog.read':    'Read more →',
     'blog.empty':   'No posts yet. Check back soon.',
+    'post.back':    '← Back to blog',
   },
 
   pt: {
@@ -259,9 +262,12 @@ const T = {
     'footer.copy': 'Célia Gonçalves · 2025',
 
     'blog.heading': 'Blog',
+    'blog.eyebrow': 'Notas e reflexões',
+    'blog.intro':   'Reflexões sobre product ownership, qualidade de software, e os desafios de construir sistemas fiáveis em ambientes regulados.',
     'blog.loading': 'A carregar posts…',
     'blog.read':    'Ler mais →',
     'blog.empty':   'Ainda sem posts. Volta em breve.',
+    'post.back':    '← Voltar ao blog',
   }
 };
 
@@ -289,8 +295,16 @@ function applyLang(l) {
     if (T[l][key] !== undefined) el.innerHTML = T[l][key];
   });
 
-  // Re-render blog cards (dates localise, read-more text changes)
-  if (window.__posts) renderBlogGrid(document.getElementById('blogGrid'));
+  // Re-render blog listing in the new locale (picks the right .pt.md / .en.md)
+  if (window.__postGroups) {
+    const grid = document.getElementById('blogGrid');
+    if (grid) renderListingFromGroups(grid);
+  }
+
+  // Re-fetch the current post in the new locale (post page)
+  if (document.body.dataset.page === 'post' && window.__currentSlug) {
+    loadSinglePost();
+  }
 }
 
 // Dropdown open/close
@@ -347,7 +361,8 @@ fills.forEach(f => skillObserver.observe(f));
 /* ============================================================
    Blog — GitHub API + marked.js
    ============================================================ */
-const REPO_API = 'https://api.github.com/repos/celiaagoncalves/celiaagoncalves.github.io/contents/posts';
+const REPO_API  = 'https://api.github.com/repos/celiaagoncalves/celiaagoncalves.github.io/contents/posts';
+const POSTS_RAW = 'https://raw.githubusercontent.com/celiaagoncalves/celiaagoncalves.github.io/master/posts';
 
 function parsePost(text, filename) {
   const slug = filename.replace(/\.md$/, '');
@@ -376,35 +391,6 @@ function formatPostDate(dateStr) {
   } catch { return dateStr; }
 }
 
-function renderBlogGrid(grid) {
-  if (!window.__posts || !window.__posts.length) return;
-  grid.innerHTML = window.__posts.map(p => `
-    <article class="blog__card" data-slug="${p.slug}" role="button" tabindex="0" aria-label="${p.title}">
-      <time class="blog__date">${formatPostDate(p.date)}</time>
-      <h3 class="blog__title">${p.title}</h3>
-      <p class="blog__summary">${p.summary}</p>
-      <span class="blog__read" aria-hidden="true">${T[lang]['blog.read']}</span>
-    </article>`).join('');
-
-  grid.querySelectorAll('.blog__card').forEach(card => {
-    card.addEventListener('click', () => openPost(card.dataset.slug));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPost(card.dataset.slug); }
-    });
-  });
-}
-
-async function openPost(slug) {
-  const post = (window.__posts || []).find(p => p.slug === slug);
-  if (!post) return;
-  document.getElementById('postTitle').textContent = post.title;
-  document.getElementById('postDate').textContent = formatPostDate(post.date);
-  if (!window.marked) await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
-  document.getElementById('postBody').innerHTML = window.marked.parse(post.body);
-  document.getElementById('blogOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
 function loadScript(src) {
   return new Promise((resolve, reject) => {
     const s = document.createElement('script');
@@ -413,44 +399,112 @@ function loadScript(src) {
   });
 }
 
-function closePost() {
-  document.getElementById('blogOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+function renderBlogGrid(grid) {
+  if (!grid || !window.__posts || !window.__posts.length) return;
+  grid.innerHTML = window.__posts.map(p => `
+    <a class="blog__card" href="post.html?slug=${encodeURIComponent(p.baseSlug)}" aria-label="${p.title}">
+      <div class="blog__card-head">
+        <time class="blog__date">${formatPostDate(p.date)}</time>
+        ${p.locale !== lang ? `<span class="blog__locale-badge" title="${p.locale === 'pt' ? 'Em português' : 'In English'}">${p.locale.toUpperCase()}</span>` : ''}
+      </div>
+      <h3 class="blog__title">${p.title}</h3>
+      <p class="blog__summary">${p.summary}</p>
+      <span class="blog__read" aria-hidden="true">${T[lang]['blog.read']}</span>
+    </a>`).join('');
 }
 
-document.getElementById('blogOverlay').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closePost();
-});
-document.getElementById('postClose').addEventListener('click', closePost);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closePost(); });
+async function renderListingFromGroups(grid) {
+  const slugs = Object.keys(window.__postGroups).sort().reverse();
+  if (!slugs.length) {
+    grid.innerHTML = `<p class="blog__empty">${T[lang]['blog.empty']}</p>`;
+    return;
+  }
+  window.__posts = await Promise.all(slugs.map(async slug => {
+    const group = window.__postGroups[slug];
+    const file = group[lang] || group.pt || group.en;
+    const text = await fetch(file.download_url).then(r => r.text());
+    const post = parsePost(text, file.name);
+    post.baseSlug = slug;
+    post.locale   = file.name.match(/\.(en|pt)\.md$/)[1];
+    return post;
+  }));
+  renderBlogGrid(grid);
+}
 
-async function loadBlogPosts() {
+async function loadBlogListing() {
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   try {
     const res = await fetch(REPO_API, { headers: { Accept: 'application/vnd.github.v3+json' } });
     if (!res.ok) { grid.innerHTML = ''; return; }
     const files = await res.json();
-    const mdFiles = files
-      .filter(f => f.name.endsWith('.md'))
-      .sort((a, b) => b.name.localeCompare(a.name))
-      .slice(0, 3);
-    if (!mdFiles.length) {
-      grid.innerHTML = `<p class="blog__empty">${T[lang]['blog.empty']}</p>`;
-      return;
-    }
-    window.__posts = await Promise.all(
-      mdFiles.map(f => fetch(f.download_url).then(r => r.text()).then(t => parsePost(t, f.name)))
-    );
-    renderBlogGrid(grid);
+
+    // Group locale-suffixed markdown files by base slug
+    const groups = {};
+    files.forEach(f => {
+      const m = f.name.match(/^(.+)\.(en|pt)\.md$/);
+      if (!m) return;
+      groups[m[1]] = groups[m[1]] || {};
+      groups[m[1]][m[2]] = f;
+    });
+
+    window.__postGroups = groups;
+    await renderListingFromGroups(grid);
   } catch {
-    const g = document.getElementById('blogGrid');
-    if (g) g.innerHTML = '';
+    if (grid) grid.innerHTML = '';
   }
+}
+
+async function tryFetchPost(slug, locale) {
+  try {
+    const res = await fetch(`${POSTS_RAW}/${encodeURIComponent(slug)}.${locale}.md`);
+    if (!res.ok) return null;
+    const post = parsePost(await res.text(), `${slug}.${locale}.md`);
+    post.baseSlug = slug;
+    post.locale   = locale;
+    return post;
+  } catch { return null; }
+}
+
+async function loadSinglePost() {
+  const titleEl     = document.getElementById('postTitle');
+  const dateEl      = document.getElementById('postDate');
+  const bodyEl      = document.getElementById('postBody');
+  const pageTitleEl = document.getElementById('postPageTitle');
+  if (!titleEl || !bodyEl) return;
+
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (!slug) { window.location.href = 'blog.html'; return; }
+
+  const alt  = lang === 'pt' ? 'en' : 'pt';
+  const post = await tryFetchPost(slug, lang) || await tryFetchPost(slug, alt);
+
+  if (!post) {
+    titleEl.textContent = lang === 'pt' ? 'Post não encontrado' : 'Post not found';
+    dateEl.textContent  = '';
+    bodyEl.innerHTML    = `<p><a href="blog.html">${lang === 'pt' ? 'Voltar ao blog' : 'Back to blog'}</a></p>`;
+    return;
+  }
+
+  window.__currentPost = post;
+  window.__currentSlug = slug;
+  titleEl.textContent  = post.title;
+  dateEl.textContent   = formatPostDate(post.date);
+  if (pageTitleEl) pageTitleEl.textContent = `${post.title} · Célia Gonçalves`;
+  document.title = `${post.title} · Célia Gonçalves`;
+
+  if (!window.marked) await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
+  bodyEl.innerHTML = window.marked.parse(post.body);
 }
 
 /* ============================================================
    Init
    ============================================================ */
 applyLang(lang);
-loadBlogPosts();
+
+const page = document.body.dataset.page;
+if (page === 'blog' || page === 'post') {
+  document.querySelectorAll('.nav__links a[href="blog.html"]').forEach(a => a.classList.add('active'));
+}
+if (page === 'blog')      loadBlogListing();
+else if (page === 'post') loadSinglePost();
