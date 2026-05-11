@@ -517,6 +517,7 @@ function renderPostShare(post) {
 
   const pageUrl = encodeURIComponent(window.location.href);
   const title   = encodeURIComponent(post.title);
+  const summary = encodeURIComponent(post.summary || 'Blog post by Célia Gonçalves.');
   const labels = {
     linkedin: lang === 'pt' ? 'Partilhar no LinkedIn' : 'Share on LinkedIn',
     twitter:  lang === 'pt' ? 'Tweetar este post' : 'Tweet this post',
@@ -525,7 +526,7 @@ function renderPostShare(post) {
   };
 
   shareLinksEl.innerHTML = `
-    <a class="post__share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
+    <a class="post__share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${title}&summary=${summary}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
       <i class="fa fa-linkedin"></i>
     </a>
     <a class="post__share-link" href="https://twitter.com/intent/tweet?text=${title}&url=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.twitter}">
