@@ -1,504 +1,442 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<!-- Metas Page details-->
-<title>Célia Gonçalves | Portfólio</title>
-<meta name="description" content="Uma página que resume os meus interesses e trabalho!">
-<meta name="author" content="Célia Gonçalves">
-<!-- Mobile Specific Metas-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--main style-->
-<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
-<!--google font style-->
-<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
-<!--font-family: 'Metrophobic', serif;-->
-<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,400italic,600italic' rel='stylesheet' type='text/css'> 
-<!--font-family: 'Open Sans', sans-serif;-->
-<!-- font icon css style-->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="shortcut icon" href="images/projects/image.png" type="image/x-icon"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Célia Gonçalves | Senior Product Owner &amp; Test Lead</title>
+  <meta name="description" content="Professional portfolio of Célia Gonçalves — Senior Product Owner &amp; Test Lead specialising in mission-critical defense systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="images/projects/image.png" type="image/png">
 </head>
-<body onLoad="load()" onUnload="GUnload()">
-<!-- Preloader -->
-<div id="preloader">
-	<div id="status"></div>
-</div>
-<!--wrapper start-->
-<div class="wrapper noGap" id="wrapper">
+<body>
 
-<!--Header start -->
-<header>
-  	<!--menu start-->
-    <div class="menu">
-    <a href="#" class="nav-icon" id="nav-show"><i class="fa fa-bars"></i></a>
-      <div class="navbar-wrapper">
-        <div class="container">
-          <div class="navwrapper">
-            <div class="navbar navbar-inverse navbar-static-top">
-              <div class="container">
-              	<!--<div class="logo">logo</div> -->
-                <div class="navArea"><a href="#" class="closeMenu"><i class="fa fa-times"></i></a>
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                     <!-- <a class="navbar-brand" href="#">Menu</a>  --></div>
-                    <div class="navbar-collapse collapse">
-                      <ul class="nav navbar-nav">
-                        <li class="menuItem active"><a href="#wrapper">Início</a></li>
-                        <li class="menuItem"><a href="#aboutus">Sobre mim</a></li>
-                        <li class="menuItem"><a href="#skillset">Skills</a></li>
-                        <li class="menuItem"><a href="#experience">Experiência</a></li>
-                        <li class="menuItem"><a href="#education">Educação</a></li>
-                        <li class="menuItem"><a href="#ourwork">Portfólio</a></li>
-                        <li class="menuItem"><a href="#contact">Contacto</a></li>
-                      </ul>
-                    </div>
-                </div>
-              </div>
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo">CG</a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about"      data-i18n="nav.about">About</a></li>
+        <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#education"  data-i18n="nav.education">Education</a></li>
+        <li><a href="#languages"  data-i18n="nav.languages">Languages</a></li>
+        <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <div class="lang__dropdown" id="langDropdown">
+          <button type="button" class="lang__current" id="langBtn" aria-haspopup="listbox" aria-label="Select language">
+            <span id="langLabel">EN</span>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="lang__menu" role="listbox" id="langMenu">
+            <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
+            <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
+          </ul>
+        </div>
+        <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero__content">
+      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Portfolio</p>
+      <h1 class="hero__name">Célia Gonçalves</h1>
+      <p class="hero__title">Senior Product Owner &amp; Test Lead</p>
+      <div class="hero__tags">
+        <span data-i18n="hero.tag1">Mission-Critical Systems</span>
+        <span data-i18n="hero.tag2">Defense</span>
+        <span data-i18n="hero.tag3">Software Quality</span>
+      </div>
+      <div class="hero__cta">
+        <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" class="btn btn--primary">
+          <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
+        </a>
+        <a href="#about" class="btn btn--ghost" data-i18n="hero.cta">Learn more</a>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <span data-i18n="hero.scroll">scroll</span>
+      <i class="fa fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">01</span>
+        <h2 data-i18n="about.heading">About</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__text">
+          <h3 data-i18n="about.subheading">Mission Assurance · Software Quality · Agile Delivery</h3>
+          <p data-i18n="about.bio1">ISTQB® Certified professional with 7+ years of experience in mission-critical and regulated defense environments. Specialised in software quality, reliability, and compliance across the full product delivery lifecycle.</p>
+          <p data-i18n="about.bio2">At Critical Software, I serve as Technical Manager and Product Owner for Defence Sector projects — leading cross-functional testing teams, defining QA strategies, and ensuring product compliance with demanding sector standards.</p>
+          <p data-i18n="about.bio3">I work at the intersection of product ownership and quality assurance, translating stakeholder needs into reliable, compliant software for high-stakes environments.</p>
+          <div class="about__badges">
+            <span class="badge"><i class="fa fa-certificate" aria-hidden="true"></i> <span data-i18n="about.badge1">ISTQB® CTFL</span></span>
+            <span class="badge"><i class="fa fa-shield" aria-hidden="true"></i> <span data-i18n="about.badge2">Defense &amp; Mission Assurance</span></span>
+            <span class="badge"><i class="fa fa-refresh" aria-hidden="true"></i> <span data-i18n="about.badge3">Agile Delivery</span></span>
+          </div>
+        </div>
+        <div class="about__photo">
+          <img src="images/celia.jpg" alt="Célia Gonçalves">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section section--dark" id="skills">
+    <div class="container">
+      <div class="section__header section__header--light">
+        <span class="section__label">02</span>
+        <h2 data-i18n="skills.heading">Skills</h2>
+      </div>
+      <div class="skills__grid">
+
+        <div class="skills__group">
+          <h4 class="skills__group-title" data-i18n="skills.group1">Product &amp; Delivery</h4>
+          <ul class="skills__list">
+            <li>
+              <span class="skills__name" data-i18n="s.po">Product Ownership / Agile</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="90"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.stk">Stakeholder Management</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="88"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.bklog">Backlog &amp; Roadmap</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="85"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.cd">Customer Discovery</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="80"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="skills__group">
+          <h4 class="skills__group-title" data-i18n="skills.group2">Quality &amp; Compliance</h4>
+          <ul class="skills__list">
+            <li>
+              <span class="skills__name" data-i18n="s.tl">Test Leadership &amp; QA</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="92"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.ma">Mission Assurance</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="85"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.sst">Secure Software Testing</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="80"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.gov">Governance &amp; Strategy</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="83"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="skills__group">
+          <h4 class="skills__group-title" data-i18n="skills.group3">Technical</h4>
+          <ul class="skills__list">
+            <li>
+              <span class="skills__name" data-i18n="s.html">HTML5 / CSS3</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="88"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.js">JavaScript / REST APIs</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="75"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.sql">SQL</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="72"></div></div>
+            </li>
+            <li>
+              <span class="skills__name" data-i18n="s.git">Git / Linux</span>
+              <div class="skills__bar"><div class="skills__fill" data-width="74"></div></div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__label">03</span>
+        <h2 data-i18n="exp.heading">Experience</h2>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <span class="timeline__date" data-i18n="exp1.date">Jul 2023 – Present</span>
+            <span class="timeline__tag" data-i18n="exp1.tag">Full-time</span>
+          </div>
+          <div class="timeline__body">
+            <h3 data-i18n="exp1.title">Senior Engineer</h3>
+            <h4 data-i18n="exp1.co">Critical Software</h4>
+            <p data-i18n="exp1.desc">Technical Manager and Product Owner for Defence Sector Projects, overseeing product strategy and project execution. Led testing teams and defined quality assurance strategies to meet demanding defence sector standards. Provided hands-on testing expertise to ensure product compliance and reliability.</p>
+            <div class="timeline__tags">
+              <span data-i18n="exp1.t1">Product Ownership</span>
+              <span data-i18n="exp1.t2">Test Leadership</span>
+              <span data-i18n="exp1.t3">Defense</span>
+              <span data-i18n="exp1.t4">Agile / Scrum</span>
             </div>
           </div>
-          <!-- End Navbar -->
         </div>
+
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <span class="timeline__date" data-i18n="exp2.date">Jan 2019 – Jun 2023</span>
+            <span class="timeline__tag" data-i18n="exp2.tag">Full-time</span>
+          </div>
+          <div class="timeline__body">
+            <h3 data-i18n="exp2.title">Engineer I → Professional Engineer II</h3>
+            <h4 data-i18n="exp2.co">Critical Software</h4>
+            <p data-i18n="exp2.desc">Progressed from Intern to Professional Engineer II, consistently taking on greater responsibilities in Product Ownership, Testing, and Quality Assurance across Defence and Government Projects. Key contributions included leading test efforts and ensuring compliance with demanding process standards.</p>
+            <div class="timeline__tags">
+              <span data-i18n="exp2.t1">QA &amp; Testing</span>
+              <span data-i18n="exp2.t2">Government Projects</span>
+              <span data-i18n="exp2.t3">Process Compliance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <span class="timeline__date" data-i18n="exp3.date">Nov 2025 – Present</span>
+            <span class="timeline__tag" data-i18n="exp3.tag">Volunteer</span>
+          </div>
+          <div class="timeline__body">
+            <h3 data-i18n="exp3.title">Parish Assembly Member</h3>
+            <h4 data-i18n="exp3.co">Junta de Freguesia de Anobra</h4>
+            <p data-i18n="exp3.desc">Elected member of the Anobra Parish Assembly, contributing to local governance and community decisions.</p>
+            <div class="timeline__tags">
+              <span data-i18n="exp3.t1">Local Governance</span>
+              <span data-i18n="exp3.t2">Community</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <span class="timeline__date" data-i18n="exp4.date">Apr 2011 – Present</span>
+            <span class="timeline__tag" data-i18n="exp4.tag">Volunteer</span>
+          </div>
+          <div class="timeline__body">
+            <h3 data-i18n="exp4.title">Football Referee</h3>
+            <h4 data-i18n="exp4.co">Associação de Futebol de Coimbra</h4>
+            <p data-i18n="exp4.desc">Officiating matches across various divisions. Maintained composure and impartiality under pressure, reinforcing leadership, decision-making, and effective communication skills.</p>
+            <div class="timeline__tags">
+              <span data-i18n="exp4.t1">Leadership</span>
+              <span data-i18n="exp4.t2">Decision-making</span>
+              <span data-i18n="exp4.t3">Teamwork</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__meta">
+            <span class="timeline__date" data-i18n="exp5.date">Sep 2014 – Jan 2015</span>
+            <span class="timeline__tag" data-i18n="exp5.tag">Internship</span>
+          </div>
+          <div class="timeline__body">
+            <h3 data-i18n="exp5.title">Web Development Intern</h3>
+            <h4 data-i18n="exp5.co">Streamline</h4>
+            <p data-i18n="exp5.desc">Contributed to web systems development with HTML, CSS, JavaScript, and PHP. Gained hands-on experience in Linux environment management, server configuration, and security practices.</p>
+            <div class="timeline__tags">
+              <span data-i18n="exp5.t1">HTML / CSS / JS</span>
+              <span data-i18n="exp5.t2">PHP</span>
+              <span data-i18n="exp5.t3">Linux</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <!--menu end--> 
-    <!--banner start-->
-    <div class="banner row" id="banner">
-    <div class="bannerText">
-        <h1>Célia Gonçalves</h1>
-        <h3>Estudante &amp; Web Design Lover </h3>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadd slides-container" style="height:100%"> 
-        <!--background slide show start-->
-        <div class="slide"> 
-          <img src="images/header-image/image01.png" alt="image01"> </div>
-        <div class="slide"> 
-          <img src="images/header-image/image02.jpg" alt="image01"> </div>
-        <!--background slide show end--> 
-      </div>
-    </div>
-    <!--banner end--> 
-    
-  </header>
-  <!--Header end -->
-  
- <!--about us start-->
-  <section class="aboutus" id="aboutus">
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="section section--soft" id="education">
     <div class="container">
-      <div class="row">
-       <div class="col-md-12">
-      	<div class="heading">
-        <h2>Sobre mim</h2>
-        <h3>Resumindo um bocadinho</h3>        
+      <div class="section__header">
+        <span class="section__label">04</span>
+        <h2 data-i18n="edu.heading">Education &amp; Certifications</h2>
       </div>
-      </div> 
-       </div> 
-      <div class="row">
-      <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right media"><img src="images/celia.jpg" alt="Uma selfie?!"></div>
-      	<div class=" col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left media">
-        	<h5>Célia Gonçalves </h5>
-            <h4>Estudante   //   Licenciatura de Eng. Informática</h4>
-            <p align="justify">23 anos, natural de Condeixa-a-Nova, desenvolvi o gosto pelo desenvolvimento Web no CET de Tecnologias e Programação de Sistemas de Informação.
-			</br>Anseio viajar pelo mundo, conhecer diferentes culturas e expandir conhecimento.
-			</br>Prefiro campismo a um hotel, aprecio a natureza e tenciono explorá-la. A minha viagem de sonho é ir ao Peru, explorar a Reserva Natural de Tambopata e conhecer as águas do rio Madre de Dios.
-			</br>Adoro comida japonesa e sou um pequeno desastre na cozinha.
-	  		</br>Amiga dos animais. Tenhos dois amigos caninos e quatro felinos.
-			</br>Não passo um dia sem música, música portuguesa de preferência.
-			</br>Muito atenta e preocupada com o português, às vezes em demasia. 
-			</br>A programar, gosto do código muito bem organizado e comentado, sem exagerar.
-			</br>Recentemente criei um projecto, GraVe, que consiste na elaboração de cartazes, logótipos, etc..., para o público em geral.
-			</br><b>Hobbies:</b> Arbitragem, Photoshop e WebDesign.</p>
-			<p>Sempre achei que uma vida é muito pouco para conhecer tudo e todo o mundo! 
-			</br>Este é o meu maior desafio.</p>
-			<!--<p><a role="button" class="btn btn-primary btn-lg">Download Printable Resume</a></p> -->
-        </div>
-      	
-      </div>     
-    </div>    
-  </section>
-  <!--about us end--> 
-  <!--Skillset start -->
-  <section id="skillset" class="skillset">
-  	<div class="container">
-    	<div class="row">
-        	<div class="col-md-12">
-               <div class="heading">
-                <h2>Skills // Experiência</h2>
-                <h3>Alguns dos meus valores</h3>        
-              </div>
-            </div>
-            <div class="col-md-12">
-            	<div class="col-md-6 col-sm-12 media">
-                	<p align="justify">Actualmente, frequento o ramo de Sistemas de Informação da licenciaura em Eng. Informática.
-			</br>O meu objectivo é finalizar a licenciatura e integrar uma equipa de Desenvolvimento Web.</p>
-                </div>
-            	<div class="col-md-6 col-sm-12">   
-			<!-- WebDesign -->
-                	<div class="skillbar clearfix " data-percent="88%">
-                    	<div class="skillbar-title"><span>Web Design</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->  
-				
-			<div class="skillbar clearfix " data-percent="95%">
-                    	<div class="skillbar-title"><span>Bootstrap</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->  
-                
-               		<div class="skillbar clearfix " data-percent="90%">
-                   	<div class="skillbar-title"><span>HTML / CSS</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->
-                
-			<div class="skillbar clearfix " data-percent="80%">
-                    	<div class="skillbar-title"><span>WordPress</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar --> 
-				
-			<div class="skillbar clearfix " data-percent="72%">
-                    	<div class="skillbar-title"><span>JavaScript</span></div>
-                   	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar --> 
+      <div class="edu__grid">
 
-			<!-- Desenvolvimento Web --> 
-			<div class="skillbar clearfix " data-percent="80%">
-                    	<div class="skillbar-title"><span>Desenvolvimento Web</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->  	
-
-			<div class="skillbar clearfix " data-percent="72%">
-                    	<div class="skillbar-title"><span>C#</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->  	
-			
-			<div class="skillbar clearfix " data-percent="60%">
-                    	<div class="skillbar-title"><span>PHP</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->   
-			
-			<!-- Photoshop -->
-			<div class="skillbar clearfix " data-percent="65%">
-                    	<div class="skillbar-title"><span>Photoshop</span></div>
-                    	<div class="skillbar-bar"></div>
-                    	<div class="skill-bar-percent"></div>
-                	</div> <!-- End Skill Bar -->  	
-				
-                </div>
-            </div>
+        <div class="edu__card edu__card--featured">
+          <div class="edu__icon"><i class="fa fa-certificate" aria-hidden="true"></i></div>
+          <div class="edu__content">
+            <span class="edu__year" data-i18n="edu1.year">Certification</span>
+            <h3 data-i18n="edu1.title">ISTQB® CTFL</h3>
+            <h4 data-i18n="edu1.org">International Software Testing Qualifications Board</h4>
+            <p data-i18n="edu1.desc">Certified Tester Foundation Level — test fundamentals, design techniques, test management and supporting tools.</p>
+          </div>
         </div>
+
+        <div class="edu__card">
+          <div class="edu__icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+          <div class="edu__content">
+            <span class="edu__year" data-i18n="edu2.year">Certification</span>
+            <h3 data-i18n="edu2.title">CSSLP Cert Prep: Secure Software Testing</h3>
+            <h4 data-i18n="edu2.org">LinkedIn Learning</h4>
+            <p data-i18n="edu2.desc">Preparation for the CSSLP certification covering secure software testing practices within the SDLC.</p>
+          </div>
+        </div>
+
+        <div class="edu__card">
+          <div class="edu__icon"><i class="fa fa-eye" aria-hidden="true"></i></div>
+          <div class="edu__content">
+            <span class="edu__year" data-i18n="edu3.year">Certification</span>
+            <h3 data-i18n="edu3.title">AI Accountability: Build Responsible Systems</h3>
+            <h4 data-i18n="edu3.org">LinkedIn Learning</h4>
+            <p data-i18n="edu3.desc">Frameworks and practices for building transparent, responsible, and accountable AI systems.</p>
+          </div>
+        </div>
+
+        <div class="edu__card">
+          <div class="edu__icon"><i class="fa fa-code" aria-hidden="true"></i></div>
+          <div class="edu__content">
+            <span class="edu__year" data-i18n="edu4.year">2015 – 2021 · Paused</span>
+            <h3 data-i18n="edu4.title">Licentiate Degree in Computer Engineering</h3>
+            <h4 data-i18n="edu4.org">Instituto Superior de Engenharia de Coimbra</h4>
+            <p data-i18n="edu4.desc">Information Systems branch — software development, databases, and networks. Studies paused in 2021.</p>
+          </div>
+        </div>
+
+        <div class="edu__card">
+          <div class="edu__icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+          <div class="edu__content">
+            <span class="edu__year" data-i18n="edu5.year">2013 – 2014</span>
+            <h3 data-i18n="edu5.title">Technological Specialisation in Information Systems</h3>
+            <h4 data-i18n="edu5.org">Instituto Superior de Engenharia de Coimbra</h4>
+            <p data-i18n="edu5.desc">Completed with an average of 15/20. Includes internship at Streamline.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
-  <!--Skillset end -->
 
-  <!--Work Experties start -->
-  <section id="experience" class="myexperties">
-  	<div class="container">
-        <div class="heading">
-        <h2>Experiência</h2>
-        <h3>Alguns dos meus "trabalhos"</h3>        
-      </div>
-        
-		<div class="row media">
-        	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            	<div class="expertiesico">
-                	Junho, 2017<br>Presente
-                </div>
-            </div>
-        	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4>GraVe</h4>
-                <h5>Freelancer</h5>
-                <p align="justify">Projecto destinado à elaboração de cartazes, logótipos e entre outros serviços.
-		</br>"Este é um projecto de duas pessoas que elaboram diversos trabalhos gráficos para várias entidades.
-		</br>Movidas pelo gosto da arte gráfica e já com alguma formação, estas pessoas estão dispostas a servir-lhe o melhor trabalho gráfico que precisar."</p>
-            </div>
-        </div>
-		
-        <div class="row media">
-        	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            	<div class="expertiesico">
-                	Abril, 2011<br>Presente
-                </div>
-            </div>
-        	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4>AFC</h4>
-                <h5>Árbitra</h5>
-                <p align="justify">Sempre fui muito ligada ao desporto e surgiu a oportunidade e influência de seguir o caminho da arbitragem.
-		</br>Com esta experiência adquiri um maior sentido de responsabilidade, autonomia, espiríto de equipa, poder de decisão e diálogo.</p>
-            </div>
-        </div>
-		
-        <div class="row media">
-        	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            	<div class="expertiesico">
-                	Novembro, 2014<br>Julho, 2017
-                </div>
-            </div>
-        	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4>ARCD Venda da Luísa // Futsal</h4>
-                <h5>Freelancer</h5>
-                <p align="justify">Voluntariamente, elaborava cartazes e era responsável por gerir as redes sociais do Futsal Feminino da Venda da Luísa. 
-		</br>O Futsal Feminino é um projecto que existe desde Novembro de 2014.
-		</br>Participei no desenrolar da equipa federada e do torneio de futsal feminino que tem tido sucesso e encontra-se no rumo à 4ª edição.</p>
-            </div>
-        </div>
-		
-		<div class="row media">
-        	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            	<div class="expertiesico">
-                	Setembro, 2014<br>Janeiro, 2015
-                </div>
-            </div>
-        	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4>Streamline</h4>
-                <h5>Estagiária</h5>
-                <p align="justify">Estágio realizado no âmbito da unidade curricular Formação em Contexto de Trabalho, do CET em Tecnologias e Programação de Sistemas de Informação.
-		</br>Durante este estágio, desenvolvi vários sites que recorriam ao PHP, Bootstrap e WordPress. </p>
-            </div>
-        </div>
-    </div>
-  </section>
-  <!--Work Experties end -->
-  <!--Education & diploma start -->
-  <section id="education" class="educationdiploma">
-  	<div class="container">
-        <div class="heading">
-        <h2>Educação // Diplomas</h2>
-        <h3>Ainda estou a melhorar este campo</h3>        
-      </div>
-        
-        <div class="row media">
-        	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            	<div class="expertiesico">
-                	Fevereiro, 2015<br>Presente
-                </div>
-            </div>
-        	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4>Tecnologias e Programação de Sistemas de Informação</h4>
-                <h5>Instituto Superior de Engenharia de Coimbra</h5>
-                <p align="justify">Curso de Especialização Tecnológica em Tecnologias e Programação de Sistemas de Informação.
-		</br>Finalizado com média de 15 (quinze) valores.</p>
-            </div>
-        </div>
-		
-        
-    </div>
-  </section>
-  <!--Education & diploma end -->
-  
-  
-  <!--portfolio start-->
-	<section class="protfolio" id="ourwork">
+  <!-- Languages -->
+  <section class="section" id="languages">
     <div class="container">
-        <div class="heading">
-            <h2>Portfólio</h2>
-            <h3>Aqui irei expor todos os meus trabalhos até então</h3>            
-		<ul class="portfolioContainer row">
-			<li class="template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-			<div class="lightCon">
-			<span class="hoverBox"> <span class="smallIcon"> 
-			<a rel="lightbox-demo" href="images/projects/big-images/Grave.png" title="Logótipo da GraVe" class="zoom lb lb_warsaw1">
-			<i class="fa fa-search fa-2x"></i>
-			</a>  
-			</span></span> 
-			<img src="images/projects/thumb-images/grave1.png" alt="" > </div>
-			</li>
-		</ul>
-				
-   
-</div>
-	
-	
-    <!--<div class="row">
-      <div class="portfolioFilter">
-        <ul>
-          <li><a href="#" data-filter="*" class="current">All</a></li>
-          <li><a href="#" data-filter=".wordpress">Wordpress</a></li>
-          <li><a href="#" data-filter=".template">template</a></li>
-          <li><a href="#" data-filter=".illustration">Illustration</a></li>
-          <li class="last"><a href="#" data-filter=".webdesign">Web Design</a></li>
-        </ul>
+      <div class="section__header">
+        <span class="section__label">05</span>
+        <h2 data-i18n="langs.heading">Languages</h2>
       </div>
-      <ul class="portfolioContainer row">
-      <li class="template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/1.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-plus fa-2x"></i></a> </span> </span> <img src="images/projects/thumb-images/thumb1.jpg" alt="" > </div>
-        </li>
-        <li class="template wordpress illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/2.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb2.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/3.jpg" title="Project Title3" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb3.jpg" alt="" > </div>
-        </li>
-        <li class="webdesign wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/4.jpg" title="Project Title4" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb4.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/5.jpg" title="Project Title5" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb5.jpg" alt="" > </div>
-        </li>
-        <li class="template webdesign illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/6.jpg" title="Project Title6" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb6.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/7.jpg" title="Project Title7" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb7.jpg" alt="" > </div>
-        </li>
-        <li class="template webdesign illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/8.jpg" title="Project Title8" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb8.jpg" alt="" > </div>
-        </li>
-        <li class="template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/9.jpg" title="Project Title1" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb9.jpg" alt=""  > </div>
-        </li>
-        <li class="template wordpress col-xs-6 col-sm-3 col-md-4 col-lg-4">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/10.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb10.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/11.jpg" title="Project Title3" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb11.jpg" alt="" > </div>
-        </li>
-        <li class="template wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/12.jpg" title="Project Title4" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb12.jpg" alt="" > </div>
-        </li>
-      </ul>
-    </div> -->
+      <div class="langs__grid">
+
+        <div class="lang__item">
+          <span class="lang__name" data-i18n="lang1.name">Portuguese</span>
+          <div class="lang__dots" aria-hidden="true">
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+          </div>
+          <span class="lang__level" data-i18n="lang1.level">Native / Bilingual</span>
+        </div>
+
+        <div class="lang__item">
+          <span class="lang__name" data-i18n="lang2.name">English</span>
+          <div class="lang__dots" aria-hidden="true">
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot"></span>
+          </div>
+          <span class="lang__level" data-i18n="lang2.level">Professional Working</span>
+        </div>
+
+        <div class="lang__item">
+          <span class="lang__name" data-i18n="lang3.name">French</span>
+          <div class="lang__dots" aria-hidden="true">
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot"></span>
+            <span class="lang__dot"></span>
+            <span class="lang__dot"></span>
+          </div>
+          <span class="lang__level" data-i18n="lang3.level">Limited Working</span>
+        </div>
+
+        <div class="lang__item">
+          <span class="lang__name" data-i18n="lang4.name">Spanish</span>
+          <div class="lang__dots" aria-hidden="true">
+            <span class="lang__dot lang__dot--full"></span>
+            <span class="lang__dot"></span>
+            <span class="lang__dot"></span>
+            <span class="lang__dot"></span>
+            <span class="lang__dot"></span>
+          </div>
+          <span class="lang__level" data-i18n="lang4.level">Elementary</span>
+        </div>
+
+      </div>
+    </div>
   </section>
-  <!--portfolio end-->   
-  
-  <!--contact start-->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="heading">
-        <h2>Mais sobre mim</h2> 		
-      </br>
-		<b>Email:</b> <a href="mailto:celiammsgon@hotmail.com" style="color: #9a9095">celiammsgon@hotmail.com</a> 
-		</br><b>GraVe:</b> <a href="https://www.facebook.com/GraVeCC/" style="color: #9a9095">página do Facebook</a></div>
-    </div>
-      <!--contact form end--> 
-    </div>
-  </section>  
-  <!--contact end--> 
 
-
-  <!--footer start-->
-  <section class="footer" id="footer">
+  <!-- Contact -->
+  <section class="section section--dark" id="contact">
     <div class="container">
-      <ul>
-       <li><a href="https://www.facebook.com/celiaagoncalves"><i class="fa fa-facebook fa-2x"></i></a></li>
-	<li><a href="https://github.com/celiaagoncalves"><i class="fa fa-github fa-2x"></i></a></li>
-	<li><a href="https://www.instagram.com/celiaagoncalves/"><i class="fa fa-instagram fa-2x"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/celiaagoncalves"><i class="fa fa-linkedin fa-2x"></i></a></li>
-	</ul>
+      <div class="section__header section__header--light">
+        <span class="section__label">06</span>
+        <h2 data-i18n="contact.heading">Contact</h2>
+      </div>
+      <p class="contact__intro" data-i18n="contact.intro">Open to discussions on defense systems, mission assurance, software quality, and agile delivery.</p>
+      <div class="contact__links">
+        <a href="mailto:celiammsgon@hotmail.com" class="contact__link">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <span>celiammsgon@hotmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+          <span>linkedin.com/in/celiaagoncalves</span>
+        </a>
+        <a href="https://github.com/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
+          <i class="fa fa-github" aria-hidden="true"></i>
+          <span>github.com/celiaagoncalves</span>
+        </a>
+        <a href="https://learn.microsoft.com/en-us/users/celia-goncalves/achievements" class="contact__link" target="_blank" rel="noopener">
+          <i class="fa fa-trophy" aria-hidden="true"></i>
+          <span>Microsoft Learn Achievements</span>
+        </a>
+      </div>
     </div>
-    <p class="text-center"><a href="#wrapper" class="gototop"><i class="fa fa-chevron-up fa-2"></i></a></p>
   </section>
-  <!--footer end-->     
-  </div>
-<!--wrapper end--> 
 
-<!--modernizr js--> 
-<script type="text/javascript" src="js/modernizr.custom.26633.js"></script> 
-<!--jquary min js--> 
-<script type="text/javascript" src="js/jquery.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__copy" data-i18n="footer.copy">Célia Gonçalves · 2025</span>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/celiaagoncalves" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
+        <a href="https://www.instagram.com/celiaagoncalves/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="mailto:celiammsgon@hotmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
 
-<!--for placeholder jquery--> 
-<script type="text/javascript" src="js/jquery.placeholder.js"></script> 
-
-<!--for header jquery--> 
-<script type="text/javascript" src="js/stickUp.js"></script> 
-<script src="js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-jQuery(function($) {
-$(document).ready( function() {
-  //enabling stickUp on the '.navbar-wrapper' class
-	$('.navbar-wrapper').stickUp({
-		parts: {
-		  0: 'banner',
-		  1: 'aboutus',
-		  2: 'skillset',
-		  3: 'experience',
-		  4: 'education',
-		  5: 'ourwork',
-		  6: 'contact'
-		},
-		itemClass: 'menuItem',
-		itemHover: 'active',
-		topMargin: 'auto'
-		});
-	});
-	
-
-});
-</script>
-<script>
-	$('#banner').superslides({
-	  animation: 'fade',
-	  play: 5000
-	});
-</script>  
-
-<!--for portfolio jquery--> 
-<script src="js/jquery.isotope.js" type="text/javascript"></script> 
-<link type="text/css" rel="stylesheet" id="theme" href="css/jquery-ui-1.8.16.custom.css">
-<link type="text/css" rel="stylesheet" href="css/lightbox.min.css">
-<script type="text/javascript" src="js/jquery.ui.widget.min.js"></script> 
-<script type="text/javascript" src="js/jquery.ui.rlightbox.js"></script> 
-
-<!--contact form js--> 
-<script type="text/javascript" src="js/jquery.contact.js"></script> 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-<script type="text/javascript">
-            // When the window has finished loading create our google map below
-            google.maps.event.addDomListener(window, 'load', init);
-        
-            function init() {
-                // Basic options for a simple Google Map
-                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-                var mapOptions = {
-                    // How zoomed in you want the map to start at (always required)
-                    zoom: 11,
-
-                    // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(40.112915, -8.499196), // Condeixa - a - Nova 
-					scrollwheel: false,
-                    // How you would like to style the map. 
-                    // This is where you would paste any style found on Snazzy Maps.
-                    styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
-                };
-
-                // Get the HTML DOM element that will contain your map 
-                // We are using a div with id="map" seen below in the <body>
-                var mapElement = document.getElementById('map');
-
-                // Create the Google Map using our element and options defined above
-                var map = new google.maps.Map(mapElement, mapOptions);
-				
-				
-
-                // Let's also add a marker while we're at it
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(40.112915, -8.499196),
-                    map: map,
-                    title: 'Hello!'
-                });
-            }
-        </script>
-
-<script src="js/jquery.easing.js"></script> 
-<script src="js/jquery.mousewheel.js"></script> 
-<script defer src="js/slideroption.js"></script> 
-
-<!--for theme custom jquery--> 
-<script src="js/custom.js"></script>
-
+  <script src="js/portfolio.js"></script>
 </body>
 </html>
