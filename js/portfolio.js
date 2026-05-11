@@ -124,8 +124,12 @@ const T = {
 
         'contact.heading': 'Contact',
         'contact.intro': 'Open to discussions on defense systems, mission assurance, software quality, and agile delivery.',
-
-        'footer.copy': 'Célia Gonçalves · 2025',
+        'contact.form.name': 'Name',
+        'contact.form.email': 'Email',
+        'contact.form.message': 'Message',
+        'contact.form.submit': 'Send message',
+        'contact.form.success': 'Message sent successfully!',
+        'contact.form.error': 'Sending failed. Please try again.',
 
         'blog.heading': 'Blog',
         'blog.eyebrow': 'Notes &amp; reflections',
@@ -259,6 +263,12 @@ const T = {
 
         'contact.heading': 'Contacto',
         'contact.intro': 'Disponível para discussões sobre sistemas de defesa, mission assurance, qualidade de software e entrega ágil.',
+        'contact.form.name': 'Nome',
+        'contact.form.email': 'Email',
+        'contact.form.message': 'Mensagem',
+        'contact.form.submit': 'Enviar mensagem',
+        'contact.form.success': 'Mensagem enviada com sucesso!',
+        'contact.form.error': 'Erro ao enviar. Tente novamente.',
 
         'footer.copy': 'Célia Gonçalves · 2025',
 
@@ -552,6 +562,35 @@ function renderPostShare(post) {
   }
 }
 
+function setupContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('contactFormStatus');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.textContent = lang === 'pt' ? 'A enviar...' : 'Sending...';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        status.textContent = T[lang]['contact.form.success'];
+      } else {
+        const result = await response.json();
+        status.textContent = result.error || T[lang]['contact.form.error'];
+      }
+    } catch (error) {
+      status.textContent = T[lang]['contact.form.error'];
+    }
+  });
+}
+
 /* ============================================================
    Init
    ============================================================ */
@@ -563,3 +602,4 @@ if (page === 'blog' || page === 'post') {
 }
 if (page === 'blog')      loadBlogListing();
 else if (page === 'post') loadSinglePost();
+setupContactForm();

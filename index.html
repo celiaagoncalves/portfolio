@@ -1,443 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Célia Gonçalves | Senior Product Owner &amp; Test Lead</title>
-  <meta name="description" content="Professional portfolio of Célia Gonçalves — Senior Product Owner &amp; Test Lead specialising in mission-critical defense systems.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/portfolio.css">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="images/projects/image.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Célia Gonçalves | Senior Product Owner &amp; Test Lead</title>
+    <meta name="description" content="Professional portfolio of Célia Gonçalves — Senior Product Owner &amp; Test Lead specialising in mission-critical defense systems.">
+    <meta property="og:title" content="Célia Gonçalves | Senior Product Owner &amp; Test Lead">
+    <meta property="og:description" content="Professional portfolio of Célia Gonçalves — Senior Product Owner &amp; Test Lead specialising in mission-critical defense systems.">
+    <meta property="og:image" content="https://celiaagoncalves.github.io/images/celia.jpg">
+    <meta property="og:image:alt" content="Portrait of Célia Gonçalves">
+    <meta property="og:url" content="https://celiaagoncalves.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Célia Gonçalves | Senior Product Owner &amp; Test Lead">
+    <meta name="twitter:description" content="Professional portfolio of Célia Gonçalves — Senior Product Owner &amp; Test Lead specialising in mission-critical defense systems.">
+    <meta name="twitter:image" content="https://celiaagoncalves.github.io/images/celia.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="images/projects/image.png" type="image/png">
 </head>
+
 <body>
 
-  <!-- Nav -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#top" class="nav__logo">CG</a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#about"      data-i18n="nav.about">About</a></li>
-        <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
-        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-        <li><a href="#education"  data-i18n="nav.education">Education</a></li>
-        <li><a href="#languages"  data-i18n="nav.languages">Languages</a></li>
-        <li><a href="blog.html"   data-i18n="nav.blog">Blog</a></li>
-        <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
-      </ul>
-      <div class="nav__actions">
-        <div class="lang__dropdown" id="langDropdown">
-          <button type="button" class="lang__current" id="langBtn" aria-haspopup="listbox" aria-label="Select language">
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#top" class="nav__logo">CG</a>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="#education" data-i18n="nav.education">Education</a></li>
+                <li><a href="#languages" data-i18n="nav.languages">Languages</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <div class="lang__dropdown" id="langDropdown">
+                    <button type="button" class="lang__current" id="langBtn" aria-haspopup="listbox" aria-label="Select language">
             <span id="langLabel">EN</span>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
-          <ul class="lang__menu" role="listbox" aria-label="Language" id="langMenu">
-            <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
-            <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
-          </ul>
-        </div>
-        <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">
+                    <ul class="lang__menu" role="listbox" aria-label="Language" id="langMenu">
+                        <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
+                        <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
+                    </ul>
+                </div>
+                <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero" id="top">
-    <div class="hero__content">
-      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Portfolio</p>
-      <h1 class="hero__name">Célia Gonçalves</h1>
-      <p class="hero__title">Senior Product Owner &amp; Test Lead</p>
-      <div class="hero__tags">
-        <span data-i18n="hero.tag1">Mission-Critical Systems</span>
-        <span data-i18n="hero.tag2">Defense</span>
-        <span data-i18n="hero.tag3">Software Quality</span>
-      </div>
-      <div class="hero__cta">
-        <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" class="btn btn--primary">
-          <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
-        </a>
-        <a href="#about" class="btn btn--ghost" data-i18n="hero.cta">Learn more</a>
-      </div>
-    </div>
-    <div class="hero__scroll" aria-hidden="true">
-      <span data-i18n="hero.scroll">scroll</span>
-      <i class="fa fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">01</span>
-        <h2 data-i18n="about.heading">About</h2>
-      </div>
-      <div class="about__grid">
-        <div class="about__text">
-          <h3 data-i18n="about.subheading">Mission Assurance · Software Quality · Agile Delivery</h3>
-          <p data-i18n="about.bio1">ISTQB® Certified professional with 7+ years of experience in mission-critical and regulated defense environments. Specialised in software quality, reliability, and compliance across the full product delivery lifecycle.</p>
-          <p data-i18n="about.bio2">At Critical Software, I serve as Technical Manager and Product Owner for Defence Sector projects — leading cross-functional testing teams, defining QA strategies, and ensuring product compliance with demanding sector standards.</p>
-          <p data-i18n="about.bio3">I work at the intersection of product ownership and quality assurance, translating stakeholder needs into reliable, compliant software for high-stakes environments.</p>
-          <div class="about__badges">
-            <span class="badge"><i class="fa fa-certificate" aria-hidden="true"></i> <span data-i18n="about.badge1">ISTQB® CTFL</span></span>
-            <span class="badge"><i class="fa fa-shield" aria-hidden="true"></i> <span data-i18n="about.badge2">Defense &amp; Mission Assurance</span></span>
-            <span class="badge"><i class="fa fa-refresh" aria-hidden="true"></i> <span data-i18n="about.badge3">Agile Delivery</span></span>
-          </div>
-        </div>
-        <div class="about__photo">
-          <img src="images/celia.jpg" alt="Célia Gonçalves">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="section section--dark" id="skills">
-    <div class="container">
-      <div class="section__header section__header--light">
-        <span class="section__label">02</span>
-        <h2 data-i18n="skills.heading">Skills</h2>
-      </div>
-      <div class="skills__grid">
-
-        <div class="skills__group">
-          <h4 class="skills__group-title" data-i18n="skills.group1">Product &amp; Delivery</h4>
-          <ul class="skills__list">
-            <li>
-              <span class="skills__name" data-i18n="s.po">Product Ownership / Agile</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="90"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.stk">Stakeholder Management</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="88"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.bklog">Backlog &amp; Roadmap</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="85"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.cd">Customer Discovery</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="80"></div></div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="skills__group">
-          <h4 class="skills__group-title" data-i18n="skills.group2">Quality &amp; Compliance</h4>
-          <ul class="skills__list">
-            <li>
-              <span class="skills__name" data-i18n="s.tl">Test Leadership &amp; QA</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="92"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.ma">Mission Assurance</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="85"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.sst">Secure Software Testing</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="80"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.gov">Governance &amp; Strategy</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="83"></div></div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="skills__group">
-          <h4 class="skills__group-title" data-i18n="skills.group3">Technical</h4>
-          <ul class="skills__list">
-            <li>
-              <span class="skills__name" data-i18n="s.html">HTML5 / CSS3</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="88"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.js">JavaScript / REST APIs</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="75"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.sql">SQL</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="72"></div></div>
-            </li>
-            <li>
-              <span class="skills__name" data-i18n="s.git">Git / Linux</span>
-              <div class="skills__bar"><div class="skills__fill" data-width="74"></div></div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section class="section" id="experience">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">03</span>
-        <h2 data-i18n="exp.heading">Experience</h2>
-      </div>
-      <div class="timeline">
-
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__date" data-i18n="exp1.date">Jul 2023 – Present</span>
-            <span class="timeline__tag" data-i18n="exp1.tag">Full-time</span>
-          </div>
-          <div class="timeline__body">
-            <h3 data-i18n="exp1.title">Senior Engineer</h3>
-            <h4 data-i18n="exp1.co">Critical Software</h4>
-            <p data-i18n="exp1.desc">Technical Manager and Product Owner for Defence Sector Projects, overseeing product strategy and project execution. Led testing teams and defined quality assurance strategies to meet demanding defence sector standards. Provided hands-on testing expertise to ensure product compliance and reliability.</p>
-            <div class="timeline__tags">
-              <span data-i18n="exp1.t1">Product Ownership</span>
-              <span data-i18n="exp1.t2">Test Leadership</span>
-              <span data-i18n="exp1.t3">Defense</span>
-              <span data-i18n="exp1.t4">Agile / Scrum</span>
             </div>
-          </div>
         </div>
+    </nav>
 
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__date" data-i18n="exp2.date">Jan 2019 – Jun 2023</span>
-            <span class="timeline__tag" data-i18n="exp2.tag">Full-time</span>
-          </div>
-          <div class="timeline__body">
-            <h3 data-i18n="exp2.title">Engineer I → Professional Engineer II</h3>
-            <h4 data-i18n="exp2.co">Critical Software</h4>
-            <p data-i18n="exp2.desc">Progressed from Intern to Professional Engineer II, consistently taking on greater responsibilities in Product Ownership, Testing, and Quality Assurance across Defence and Government Projects. Key contributions included leading test efforts and ensuring compliance with demanding process standards.</p>
-            <div class="timeline__tags">
-              <span data-i18n="exp2.t1">QA &amp; Testing</span>
-              <span data-i18n="exp2.t2">Government Projects</span>
-              <span data-i18n="exp2.t3">Process Compliance</span>
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="hero__content">
+            <p class="hero__eyebrow" data-i18n="hero.eyebrow">Portfolio</p>
+            <h1 class="hero__name">Célia Gonçalves</h1>
+            <p class="hero__title">Senior Product Owner &amp; Test Lead</p>
+            <div class="hero__tags">
+                <span data-i18n="hero.tag1">Mission-Critical Systems</span>
+                <span data-i18n="hero.tag2">Defense</span>
+                <span data-i18n="hero.tag3">Software Quality</span>
             </div>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__date" data-i18n="exp3.date">Nov 2025 – Present</span>
-            <span class="timeline__tag" data-i18n="exp3.tag">Volunteer</span>
-          </div>
-          <div class="timeline__body">
-            <h3 data-i18n="exp3.title">Parish Assembly Member</h3>
-            <h4 data-i18n="exp3.co">Junta de Freguesia de Anobra</h4>
-            <p data-i18n="exp3.desc">Elected member of the Anobra Parish Assembly, contributing to local governance and community decisions.</p>
-            <div class="timeline__tags">
-              <span data-i18n="exp3.t1">Local Governance</span>
-              <span data-i18n="exp3.t2">Community</span>
+            <div class="hero__cta">
+                <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" class="btn btn--primary">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
+                </a>
+                <a href="#about" class="btn btn--ghost" data-i18n="hero.cta">Learn more</a>
             </div>
-          </div>
         </div>
+        <div class="hero__scroll" aria-hidden="true">
+            <span data-i18n="hero.scroll">scroll</span>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+    </section>
 
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__date" data-i18n="exp4.date">Apr 2011 – Present</span>
-            <span class="timeline__tag" data-i18n="exp4.tag">Volunteer</span>
-          </div>
-          <div class="timeline__body">
-            <h3 data-i18n="exp4.title">Football Referee</h3>
-            <h4 data-i18n="exp4.co">Associação de Futebol de Coimbra</h4>
-            <p data-i18n="exp4.desc">Officiating matches across various divisions. Maintained composure and impartiality under pressure, reinforcing leadership, decision-making, and effective communication skills.</p>
-            <div class="timeline__tags">
-              <span data-i18n="exp4.t1">Leadership</span>
-              <span data-i18n="exp4.t2">Decision-making</span>
-              <span data-i18n="exp4.t3">Teamwork</span>
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">01</span>
+                <h2 data-i18n="about.heading">About</h2>
             </div>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__date" data-i18n="exp5.date">Sep 2014 – Jan 2015</span>
-            <span class="timeline__tag" data-i18n="exp5.tag">Internship</span>
-          </div>
-          <div class="timeline__body">
-            <h3 data-i18n="exp5.title">Web Development Intern</h3>
-            <h4 data-i18n="exp5.co">Streamline</h4>
-            <p data-i18n="exp5.desc">Contributed to web systems development with HTML, CSS, JavaScript, and PHP. Gained hands-on experience in Linux environment management, server configuration, and security practices.</p>
-            <div class="timeline__tags">
-              <span data-i18n="exp5.t1">HTML / CSS / JS</span>
-              <span data-i18n="exp5.t2">PHP</span>
-              <span data-i18n="exp5.t3">Linux</span>
+            <div class="about__grid">
+                <div class="about__text">
+                    <h3 data-i18n="about.subheading">Mission Assurance · Software Quality · Agile Delivery</h3>
+                    <p data-i18n="about.bio1">ISTQB® Certified professional with 7+ years of experience in mission-critical and regulated defense environments. Specialised in software quality, reliability, and compliance across the full product delivery lifecycle.</p>
+                    <p data-i18n="about.bio2">At Critical Software, I serve as Technical Manager and Product Owner for Defence Sector projects — leading cross-functional testing teams, defining QA strategies, and ensuring product compliance with demanding sector standards.</p>
+                    <p data-i18n="about.bio3">I work at the intersection of product ownership and quality assurance, translating stakeholder needs into reliable, compliant software for high-stakes environments.</p>
+                    <div class="about__badges">
+                        <span class="badge"><i class="fa fa-certificate" aria-hidden="true"></i> <span data-i18n="about.badge1">ISTQB® CTFL</span></span>
+                        <span class="badge"><i class="fa fa-shield" aria-hidden="true"></i> <span data-i18n="about.badge2">Defense &amp; Mission Assurance</span></span>
+                        <span class="badge"><i class="fa fa-refresh" aria-hidden="true"></i> <span data-i18n="about.badge3">Agile Delivery</span></span>
+                    </div>
+                </div>
+                <div class="about__photo">
+                    <img src="images/celia.jpg" alt="Célia Gonçalves">
+                </div>
             </div>
-          </div>
         </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
+    <!-- Skills -->
+    <section class="section section--dark" id="skills">
+        <div class="container">
+            <div class="section__header section__header--light">
+                <span class="section__label">02</span>
+                <h2 data-i18n="skills.heading">Skills</h2>
+            </div>
+            <div class="skills__grid">
 
-  <!-- Education & Certifications -->
-  <section class="section section--soft" id="education">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">04</span>
-        <h2 data-i18n="edu.heading">Education &amp; Certifications</h2>
-      </div>
-      <div class="edu__grid">
+                <div class="skills__group">
+                    <h4 class="skills__group-title" data-i18n="skills.group1">Product &amp; Delivery</h4>
+                    <ul class="skills__list">
+                        <li>
+                            <span class="skills__name" data-i18n="s.po">Product Ownership / Agile</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="90"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.stk">Stakeholder Management</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="88"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.bklog">Backlog &amp; Roadmap</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="85"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.cd">Customer Discovery</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="80"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-        <div class="edu__card edu__card--featured">
-          <div class="edu__icon"><i class="fa fa-certificate" aria-hidden="true"></i></div>
-          <div class="edu__content">
-            <span class="edu__year" data-i18n="edu1.year">Certification</span>
-            <h3 data-i18n="edu1.title">ISTQB® CTFL</h3>
-            <h4 data-i18n="edu1.org">International Software Testing Qualifications Board</h4>
-            <p data-i18n="edu1.desc">Certified Tester Foundation Level — test fundamentals, design techniques, test management and supporting tools.</p>
-          </div>
+                <div class="skills__group">
+                    <h4 class="skills__group-title" data-i18n="skills.group2">Quality &amp; Compliance</h4>
+                    <ul class="skills__list">
+                        <li>
+                            <span class="skills__name" data-i18n="s.tl">Test Leadership &amp; QA</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="92"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.ma">Mission Assurance</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="85"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.sst">Secure Software Testing</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="80"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.gov">Governance &amp; Strategy</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="83"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skills__group">
+                    <h4 class="skills__group-title" data-i18n="skills.group3">Technical</h4>
+                    <ul class="skills__list">
+                        <li>
+                            <span class="skills__name" data-i18n="s.html">HTML5 / CSS3</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="88"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.js">JavaScript / REST APIs</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="75"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.sql">SQL</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="72"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skills__name" data-i18n="s.git">Git / Linux</span>
+                            <div class="skills__bar">
+                                <div class="skills__fill" data-width="74"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="edu__card">
-          <div class="edu__icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
-          <div class="edu__content">
-            <span class="edu__year" data-i18n="edu2.year">Certification</span>
-            <h3 data-i18n="edu2.title">CSSLP Cert Prep: Secure Software Testing</h3>
-            <h4 data-i18n="edu2.org">LinkedIn Learning</h4>
-            <p data-i18n="edu2.desc">Preparation for the CSSLP certification covering secure software testing practices within the SDLC.</p>
-          </div>
+    <!-- Experience -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">03</span>
+                <h2 data-i18n="exp.heading">Experience</h2>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline__item">
+                    <div class="timeline__meta">
+                        <span class="timeline__date" data-i18n="exp1.date">Jul 2023 – Present</span>
+                        <span class="timeline__tag" data-i18n="exp1.tag">Full-time</span>
+                    </div>
+                    <div class="timeline__body">
+                        <h3 data-i18n="exp1.title">Senior Engineer</h3>
+                        <h4 data-i18n="exp1.co">Critical Software</h4>
+                        <p data-i18n="exp1.desc">Technical Manager and Product Owner for Defence Sector Projects, overseeing product strategy and project execution. Led testing teams and defined quality assurance strategies to meet demanding defence sector standards. Provided
+                            hands-on testing expertise to ensure product compliance and reliability.</p>
+                        <div class="timeline__tags">
+                            <span data-i18n="exp1.t1">Product Ownership</span>
+                            <span data-i18n="exp1.t2">Test Leadership</span>
+                            <span data-i18n="exp1.t3">Defense</span>
+                            <span data-i18n="exp1.t4">Agile / Scrum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__meta">
+                        <span class="timeline__date" data-i18n="exp2.date">Jan 2019 – Jun 2023</span>
+                        <span class="timeline__tag" data-i18n="exp2.tag">Full-time</span>
+                    </div>
+                    <div class="timeline__body">
+                        <h3 data-i18n="exp2.title">Engineer I → Professional Engineer II</h3>
+                        <h4 data-i18n="exp2.co">Critical Software</h4>
+                        <p data-i18n="exp2.desc">Progressed from Intern to Professional Engineer II, consistently taking on greater responsibilities in Product Ownership, Testing, and Quality Assurance across Defence and Government Projects. Key contributions included leading
+                            test efforts and ensuring compliance with demanding process standards.</p>
+                        <div class="timeline__tags">
+                            <span data-i18n="exp2.t1">QA &amp; Testing</span>
+                            <span data-i18n="exp2.t2">Government Projects</span>
+                            <span data-i18n="exp2.t3">Process Compliance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__meta">
+                        <span class="timeline__date" data-i18n="exp3.date">Nov 2025 – Present</span>
+                        <span class="timeline__tag" data-i18n="exp3.tag">Volunteer</span>
+                    </div>
+                    <div class="timeline__body">
+                        <h3 data-i18n="exp3.title">Parish Assembly Member</h3>
+                        <h4 data-i18n="exp3.co">Junta de Freguesia de Anobra</h4>
+                        <p data-i18n="exp3.desc">Elected member of the Anobra Parish Assembly, contributing to local governance and community decisions.</p>
+                        <div class="timeline__tags">
+                            <span data-i18n="exp3.t1">Local Governance</span>
+                            <span data-i18n="exp3.t2">Community</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__meta">
+                        <span class="timeline__date" data-i18n="exp4.date">Apr 2011 – Present</span>
+                        <span class="timeline__tag" data-i18n="exp4.tag">Volunteer</span>
+                    </div>
+                    <div class="timeline__body">
+                        <h3 data-i18n="exp4.title">Football Referee</h3>
+                        <h4 data-i18n="exp4.co">Associação de Futebol de Coimbra</h4>
+                        <p data-i18n="exp4.desc">Officiating matches across various divisions. Maintained composure and impartiality under pressure, reinforcing leadership, decision-making, and effective communication skills.</p>
+                        <div class="timeline__tags">
+                            <span data-i18n="exp4.t1">Leadership</span>
+                            <span data-i18n="exp4.t2">Decision-making</span>
+                            <span data-i18n="exp4.t3">Teamwork</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__meta">
+                        <span class="timeline__date" data-i18n="exp5.date">Sep 2014 – Jan 2015</span>
+                        <span class="timeline__tag" data-i18n="exp5.tag">Internship</span>
+                    </div>
+                    <div class="timeline__body">
+                        <h3 data-i18n="exp5.title">Web Development Intern</h3>
+                        <h4 data-i18n="exp5.co">Streamline</h4>
+                        <p data-i18n="exp5.desc">Contributed to web systems development with HTML, CSS, JavaScript, and PHP. Gained hands-on experience in Linux environment management, server configuration, and security practices.</p>
+                        <div class="timeline__tags">
+                            <span data-i18n="exp5.t1">HTML / CSS / JS</span>
+                            <span data-i18n="exp5.t2">PHP</span>
+                            <span data-i18n="exp5.t3">Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="edu__card">
-          <div class="edu__icon"><i class="fa fa-eye" aria-hidden="true"></i></div>
-          <div class="edu__content">
-            <span class="edu__year" data-i18n="edu3.year">Certification</span>
-            <h3 data-i18n="edu3.title">AI Accountability: Build Responsible Systems</h3>
-            <h4 data-i18n="edu3.org">LinkedIn Learning</h4>
-            <p data-i18n="edu3.desc">Frameworks and practices for building transparent, responsible, and accountable AI systems.</p>
-          </div>
+    <!-- Education & Certifications -->
+    <section class="section section--soft" id="education">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">04</span>
+                <h2 data-i18n="edu.heading">Education &amp; Certifications</h2>
+            </div>
+            <div class="edu__grid">
+
+                <div class="edu__card edu__card--featured">
+                    <div class="edu__icon"><i class="fa fa-certificate" aria-hidden="true"></i></div>
+                    <div class="edu__content">
+                        <span class="edu__year" data-i18n="edu1.year">Certification</span>
+                        <h3 data-i18n="edu1.title">ISTQB® CTFL</h3>
+                        <h4 data-i18n="edu1.org">International Software Testing Qualifications Board</h4>
+                        <p data-i18n="edu1.desc">Certified Tester Foundation Level — test fundamentals, design techniques, test management and supporting tools.</p>
+                    </div>
+                </div>
+
+                <div class="edu__card">
+                    <div class="edu__icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+                    <div class="edu__content">
+                        <span class="edu__year" data-i18n="edu2.year">Certification</span>
+                        <h3 data-i18n="edu2.title">CSSLP Cert Prep: Secure Software Testing</h3>
+                        <h4 data-i18n="edu2.org">LinkedIn Learning</h4>
+                        <p data-i18n="edu2.desc">Preparation for the CSSLP certification covering secure software testing practices within the SDLC.</p>
+                    </div>
+                </div>
+
+                <div class="edu__card">
+                    <div class="edu__icon"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                    <div class="edu__content">
+                        <span class="edu__year" data-i18n="edu3.year">Certification</span>
+                        <h3 data-i18n="edu3.title">AI Accountability: Build Responsible Systems</h3>
+                        <h4 data-i18n="edu3.org">LinkedIn Learning</h4>
+                        <p data-i18n="edu3.desc">Frameworks and practices for building transparent, responsible, and accountable AI systems.</p>
+                    </div>
+                </div>
+
+                <div class="edu__card">
+                    <div class="edu__icon"><i class="fa fa-code" aria-hidden="true"></i></div>
+                    <div class="edu__content">
+                        <span class="edu__year" data-i18n="edu4.year">2015 – 2021 · Paused</span>
+                        <h3 data-i18n="edu4.title">Licentiate Degree in Computer Engineering</h3>
+                        <h4 data-i18n="edu4.org">Instituto Superior de Engenharia de Coimbra</h4>
+                        <p data-i18n="edu4.desc">Information Systems branch — software development, databases, and networks. Studies paused in 2021.</p>
+                    </div>
+                </div>
+
+                <div class="edu__card">
+                    <div class="edu__icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+                    <div class="edu__content">
+                        <span class="edu__year" data-i18n="edu5.year">2013 – 2014</span>
+                        <h3 data-i18n="edu5.title">Technological Specialisation in Information Systems</h3>
+                        <h4 data-i18n="edu5.org">Instituto Superior de Engenharia de Coimbra</h4>
+                        <p data-i18n="edu5.desc">Completed with an average of 15/20. Includes internship at Streamline.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="edu__card">
-          <div class="edu__icon"><i class="fa fa-code" aria-hidden="true"></i></div>
-          <div class="edu__content">
-            <span class="edu__year" data-i18n="edu4.year">2015 – 2021 · Paused</span>
-            <h3 data-i18n="edu4.title">Licentiate Degree in Computer Engineering</h3>
-            <h4 data-i18n="edu4.org">Instituto Superior de Engenharia de Coimbra</h4>
-            <p data-i18n="edu4.desc">Information Systems branch — software development, databases, and networks. Studies paused in 2021.</p>
-          </div>
+    <!-- Languages -->
+    <section class="section" id="languages">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">05</span>
+                <h2 data-i18n="langs.heading">Languages</h2>
+            </div>
+            <div class="langs__grid">
+
+                <div class="lang__item">
+                    <span class="lang__name" data-i18n="lang1.name">Portuguese</span>
+                    <div class="lang__dots" aria-hidden="true">
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                    </div>
+                    <span class="lang__level" data-i18n="lang1.level">Native / Bilingual</span>
+                </div>
+
+                <div class="lang__item">
+                    <span class="lang__name" data-i18n="lang2.name">English</span>
+                    <div class="lang__dots" aria-hidden="true">
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot"></span>
+                    </div>
+                    <span class="lang__level" data-i18n="lang2.level">Professional Working</span>
+                </div>
+
+                <div class="lang__item">
+                    <span class="lang__name" data-i18n="lang3.name">French</span>
+                    <div class="lang__dots" aria-hidden="true">
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot"></span>
+                        <span class="lang__dot"></span>
+                        <span class="lang__dot"></span>
+                    </div>
+                    <span class="lang__level" data-i18n="lang3.level">Limited Working</span>
+                </div>
+
+                <div class="lang__item">
+                    <span class="lang__name" data-i18n="lang4.name">Spanish</span>
+                    <div class="lang__dots" aria-hidden="true">
+                        <span class="lang__dot lang__dot--full"></span>
+                        <span class="lang__dot"></span>
+                        <span class="lang__dot"></span>
+                        <span class="lang__dot"></span>
+                        <span class="lang__dot"></span>
+                    </div>
+                    <span class="lang__level" data-i18n="lang4.level">Elementary</span>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="edu__card">
-          <div class="edu__icon"><i class="fa fa-book" aria-hidden="true"></i></div>
-          <div class="edu__content">
-            <span class="edu__year" data-i18n="edu5.year">2013 – 2014</span>
-            <h3 data-i18n="edu5.title">Technological Specialisation in Information Systems</h3>
-            <h4 data-i18n="edu5.org">Instituto Superior de Engenharia de Coimbra</h4>
-            <p data-i18n="edu5.desc">Completed with an average of 15/20. Includes internship at Streamline.</p>
-          </div>
+    <!-- Contact -->
+    <section class="section section--dark" id="contact">
+        <div class="container">
+            <div class="section__header section__header--light">
+                <span class="section__label">06</span>
+                <h2 data-i18n="contact.heading">Contact</h2>
+            </div>
+            <p class="contact__intro" data-i18n="contact.intro">Open to discussions on defense systems, mission assurance, software quality, and agile delivery.</p>
+            <div class="contact__grid">
+                <div class="contact__links">
+                    <a href="https://www.linkedin.com/in/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        <span>linkedin.com/in/celiaagoncalves</span>
+                    </a>
+                    <a href="https://github.com/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
+                        <i class="fa fa-github" aria-hidden="true"></i>
+                        <span>github.com/celiaagoncalves</span>
+                    </a>
+                    <a href="https://learn.microsoft.com/en-us/users/celia-goncalves/achievements" class="contact__link" target="_blank" rel="noopener">
+                        <i class="fa fa-trophy" aria-hidden="true"></i>
+                        <span>Microsoft Learn Achievements</span>
+                    </a>
+                </div>
+                <form class="contact__form" id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                    <label for="contactName" data-i18n="contact.form.name">Name</label>
+                    <input type="text" id="contactName" name="name" required>
+
+                    <label for="contactEmail" data-i18n="contact.form.email">Email</label>
+                    <input type="email" id="contactEmail" name="email" required>
+
+                    <label for="contactMessage" data-i18n="contact.form.message">Message</label>
+                    <textarea id="contactMessage" name="message" rows="5" required></textarea>
+
+                    <button type="submit" class="btn btn--primary" data-i18n="contact.form.submit">Send message</button>
+                    <p class="contact__status" id="contactFormStatus" aria-live="polite"></p>
+                </form>
+            </div>
         </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Languages -->
-  <section class="section" id="languages">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__label">05</span>
-        <h2 data-i18n="langs.heading">Languages</h2>
-      </div>
-      <div class="langs__grid">
-
-        <div class="lang__item">
-          <span class="lang__name" data-i18n="lang1.name">Portuguese</span>
-          <div class="lang__dots" aria-hidden="true">
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-          </div>
-          <span class="lang__level" data-i18n="lang1.level">Native / Bilingual</span>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__copy" data-i18n="footer.copy">Célia Gonçalves · 2025</span>
+            <div class="footer__social">
+                <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/celiaagoncalves" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                <a href="https://www.instagram.com/celiaagoncalves/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+            </div>
         </div>
+    </footer>
 
-        <div class="lang__item">
-          <span class="lang__name" data-i18n="lang2.name">English</span>
-          <div class="lang__dots" aria-hidden="true">
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot"></span>
-          </div>
-          <span class="lang__level" data-i18n="lang2.level">Professional Working</span>
-        </div>
-
-        <div class="lang__item">
-          <span class="lang__name" data-i18n="lang3.name">French</span>
-          <div class="lang__dots" aria-hidden="true">
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot"></span>
-            <span class="lang__dot"></span>
-            <span class="lang__dot"></span>
-          </div>
-          <span class="lang__level" data-i18n="lang3.level">Limited Working</span>
-        </div>
-
-        <div class="lang__item">
-          <span class="lang__name" data-i18n="lang4.name">Spanish</span>
-          <div class="lang__dots" aria-hidden="true">
-            <span class="lang__dot lang__dot--full"></span>
-            <span class="lang__dot"></span>
-            <span class="lang__dot"></span>
-            <span class="lang__dot"></span>
-            <span class="lang__dot"></span>
-          </div>
-          <span class="lang__level" data-i18n="lang4.level">Elementary</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section section--dark" id="contact">
-    <div class="container">
-      <div class="section__header section__header--light">
-        <span class="section__label">06</span>
-        <h2 data-i18n="contact.heading">Contact</h2>
-      </div>
-      <p class="contact__intro" data-i18n="contact.intro">Open to discussions on defense systems, mission assurance, software quality, and agile delivery.</p>
-      <div class="contact__links">
-        <a href="mailto:celiammsgon@hotmail.com" class="contact__link">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-          <span>celiammsgon@hotmail.com</span>
-        </a>
-        <a href="https://www.linkedin.com/in/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
-          <i class="fa fa-linkedin" aria-hidden="true"></i>
-          <span>linkedin.com/in/celiaagoncalves</span>
-        </a>
-        <a href="https://github.com/celiaagoncalves" class="contact__link" target="_blank" rel="noopener">
-          <i class="fa fa-github" aria-hidden="true"></i>
-          <span>github.com/celiaagoncalves</span>
-        </a>
-        <a href="https://learn.microsoft.com/en-us/users/celia-goncalves/achievements" class="contact__link" target="_blank" rel="noopener">
-          <i class="fa fa-trophy" aria-hidden="true"></i>
-          <span>Microsoft Learn Achievements</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <span class="footer__copy" data-i18n="footer.copy">Célia Gonçalves · 2025</span>
-      <div class="footer__social">
-        <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
-        <a href="https://github.com/celiaagoncalves" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
-        <a href="https://www.instagram.com/celiaagoncalves/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
-        <a href="mailto:celiammsgon@hotmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/portfolio.js"></script>
+    <script src="js/portfolio.js"></script>
 </body>
+
 </html>

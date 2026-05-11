@@ -1,80 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog · Célia Gonçalves</title>
-  <meta name="description" content="Notes on product ownership, software quality, and mission-critical systems.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/portfolio.css">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog · Célia Gonçalves</title>
+    <meta name="description" content="Notes on product ownership, software quality, and mission-critical systems.">
+    <meta property="og:title" content="Blog · Célia Gonçalves">
+    <meta property="og:description" content="Notes on product ownership, software quality, and mission-critical systems.">
+    <meta property="og:image" content="https://celiaagoncalves.github.io/images/celia.jpg">
+    <meta property="og:image:alt" content="Blog by Célia Gonçalves">
+    <meta property="og:url" content="https://celiaagoncalves.github.io/blog.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog · Célia Gonçalves">
+    <meta name="twitter:description" content="Notes on product ownership, software quality, and mission-critical systems.">
+    <meta name="twitter:image" content="https://celiaagoncalves.github.io/images/celia.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
+
 <body data-page="blog">
 
-  <!-- Nav -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">CG</a>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="index.html#about"      data-i18n="nav.about">About</a></li>
-        <li><a href="index.html#skills"     data-i18n="nav.skills">Skills</a></li>
-        <li><a href="index.html#experience" data-i18n="nav.experience">Experience</a></li>
-        <li><a href="index.html#education"  data-i18n="nav.education">Education</a></li>
-        <li><a href="index.html#languages"  data-i18n="nav.languages">Languages</a></li>
-        <li><a href="blog.html"             data-i18n="nav.blog">Blog</a></li>
-        <li><a href="index.html#contact"    data-i18n="nav.contact">Contact</a></li>
-      </ul>
-      <div class="nav__actions">
-        <div class="lang__dropdown" id="langDropdown">
-          <button type="button" class="lang__current" id="langBtn" aria-haspopup="listbox" aria-label="Select language">
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">CG</a>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="index.html#experience" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="index.html#education" data-i18n="nav.education">Education</a></li>
+                <li><a href="index.html#languages" data-i18n="nav.languages">Languages</a></li>
+                <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <div class="lang__dropdown" id="langDropdown">
+                    <button type="button" class="lang__current" id="langBtn" aria-haspopup="listbox" aria-label="Select language">
             <span id="langLabel">EN</span>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
-          <ul class="lang__menu" role="listbox" aria-label="Language" id="langMenu">
-            <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
-            <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
-          </ul>
-        </div>
-        <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">
+                    <ul class="lang__menu" role="listbox" aria-label="Language" id="langMenu">
+                        <li class="lang__option lang__option--active" data-lang="en" role="option" aria-selected="true">EN</li>
+                        <li class="lang__option" data-lang="pt" role="option" aria-selected="false">PT</li>
+                    </ul>
+                </div>
+                <button type="button" class="nav__toggle" id="navToggle" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
-      </div>
-    </div>
-  </nav>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Page header -->
-  <header class="page-header">
-    <div class="container">
-      <p class="page-header__eyebrow" data-i18n="blog.eyebrow">Notes &amp; reflections</p>
-      <h1 class="page-header__title" data-i18n="blog.heading">Blog</h1>
-      <p class="page-header__sub" data-i18n="blog.intro">Reflections on product ownership, software quality, and the challenges of building reliable systems in regulated environments.</p>
-    </div>
-  </header>
+    <!-- Page header -->
+    <header class="page-header">
+        <div class="container">
+            <p class="page-header__eyebrow" data-i18n="blog.eyebrow">Notes &amp; reflections</p>
+            <h1 class="page-header__title" data-i18n="blog.heading">Blog</h1>
+            <p class="page-header__sub" data-i18n="blog.intro">Reflections on product ownership, software quality, and the challenges of building reliable systems in regulated environments.</p>
+        </div>
+    </header>
 
-  <!-- Blog listing -->
-  <main class="section">
-    <div class="container">
-      <div class="blog__grid" id="blogGrid">
-        <p class="blog__loading" data-i18n="blog.loading">A carregar posts…</p>
-      </div>
-    </div>
-  </main>
+    <!-- Blog listing -->
+    <main class="section">
+        <div class="container">
+            <div class="blog__grid" id="blogGrid">
+                <p class="blog__loading" data-i18n="blog.loading">A carregar posts…</p>
+            </div>
+        </div>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <span class="footer__copy" data-i18n="footer.copy">Célia Gonçalves · 2025</span>
-      <div class="footer__social">
-        <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
-        <a href="https://github.com/celiaagoncalves" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
-        <a href="https://www.instagram.com/celiaagoncalves/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
-        <a href="mailto:celiammsgon@hotmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
-      </div>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__copy" data-i18n="footer.copy">Célia Gonçalves · 2025</span>
+            <div class="footer__social">
+                <a href="https://www.linkedin.com/in/celiaagoncalves" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/celiaagoncalves" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                <a href="https://www.instagram.com/celiaagoncalves/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:celiammsgon@hotmail.com" aria-label="Email"><i class="fa fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
 
-  <script src="js/portfolio.js"></script>
+    <script src="js/portfolio.js"></script>
 </body>
+
 </html>
