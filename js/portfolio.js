@@ -537,6 +537,15 @@ const safeDecode = (s) => {
   }
 };
 
+// Helpers: descodifica só se fizer sentido (evita exceptions)
+const safeDecode = (s) => {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s; // se não estiver percent-encoded, devolve como está
+  }
+};
+
 // 1) versões "limpas" (para WhatsApp) — evita double-encoding
 const cleanTitle = safeDecode(title);
 const cleanUrl = safeDecode(pageUrl);
