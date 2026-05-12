@@ -527,6 +527,9 @@ function renderPostShare(post) {
     instagramHint: lang === 'pt' ? 'O Instagram não suporta partilha direta. Clica para copiar o link.' : 'Instagram doesn\'t support direct sharing. Click to copy the link.'
   };
 
+
+  const whatsappText = encodeURIComponent(`${title} ${pageUrl}`);
+
  shareLinksEl.innerHTML = `
   <a class="post__share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${title}&summary=${summary}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
     <i class="fa fa-linkedin"></i>
@@ -541,12 +544,12 @@ function renderPostShare(post) {
   </a>
 
   <a class="post__share-link"
-     href="https://wa.me/?text=${encodeURIComponent(title + ' ' + pageUrl)}"
-     target="_blank"
-     rel="noopener"
-     aria-label="${labels.whatsapp}">
-    <i class="fa fa-whatsapp"></i>
-  </a>
+   href="https://api.whatsapp.com/send?text=${encodeURIComponent(`${title} ${pageUrl}`)}"
+   target="_blank"
+   rel="noopener"
+   aria-label="${labels.whatsapp}">
+  <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
+</a>
 
   <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}" title="${labels.instagramHint}">
     <i class="fa fa-instagram"></i>
