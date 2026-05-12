@@ -522,24 +522,36 @@ function renderPostShare(post) {
     linkedin: lang === 'pt' ? 'Partilhar no LinkedIn' : 'Share on LinkedIn',
     twitter:  lang === 'pt' ? 'Tweetar este post' : 'Tweet this post',
     facebook: lang === 'pt' ? 'Partilhar no Facebook' : 'Share on Facebook',
+    whatsapp: lang === 'pt' ? 'Partilhar no WhatsApp' : 'Share on WhatsApp',
     instagram: lang === 'pt' ? 'Copiar link para o Instagram' : 'Copy link for Instagram',
     instagramHint: lang === 'pt' ? 'O Instagram não suporta partilha direta. Clica para copiar o link.' : 'Instagram doesn\'t support direct sharing. Click to copy the link.'
   };
 
-  shareLinksEl.innerHTML = `
-    <a class="post__share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${title}&summary=${summary}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
-      <i class="fa fa-linkedin"></i>
-    </a>
-    <a class="post__share-link" href="https://twitter.com/intent/tweet?text=${title}&url=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.twitter}">
-      <i class="fa fa-twitter"></i>
-    </a>
-    <a class="post__share-link" href="https://www.facebook.com/sharer/sharer.php?u=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.facebook}">
-      <i class="fa fa-facebook"></i>
-    </a>
-    <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}" title="${labels.instagramHint}">
-      <i class="fa fa-instagram"></i>
-    </button>
-  `;
+ shareLinksEl.innerHTML = `
+  <a class="post__share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${title}&summary=${summary}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
+    <i class="fa fa-linkedin"></i>
+  </a>
+
+  <a class="post__share-link" href="https://twitter.com/intent/tweet?text=${title}&url=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.twitter}">
+    <i class="fa fa-twitter"></i>
+  </a>
+
+  <a class="post__share-link" href="https://www.facebook.com/sharer/sharer.php?u=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.facebook}">
+    <i class="fa fa-facebook"></i>
+  </a>
+
+  <a class="post__share-link"
+     href="https://wa.me/?text=${encodeURIComponent(title + ' ' + pageUrl)}"
+     target="_blank"
+     rel="noopener"
+     aria-label="${labels.whatsapp}">
+    <i class="fa fa-whatsapp"></i>
+  </a>
+
+  <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}" title="${labels.instagramHint}">
+    <i class="fa fa-instagram"></i>
+  </button>
+`;
 
   const instagramBtn = document.getElementById('postShareInstagram');
   if (instagramBtn) {
