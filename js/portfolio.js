@@ -528,30 +528,39 @@ function renderPostShare(post) {
   };
 
 
-  const whatsappText = encodeURIComponent(`${title} ${pageUrl}`);
+const safeTitle = encodeURIComponent(title);
+const safeSummary = encodeURIComponent(summary);
+const safeUrl = encodeURIComponent(pageUrl);
 
- shareLinksEl.innerHTML = `
-  <a class="post__share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${title}&summary=${summary}" target="_blank" rel="noopener" aria-label="${labels.linkedin}">
+const whatsappText = encodeURIComponent(`${title} ${pageUrl}`);
+
+shareLinksEl.innerHTML = `
+  <a class="post__share-link"
+     href="https://www.linkedin.com/shareArticle?mini=true&url=${safeUrl}&title=${safeTitle}&summary=${safeSummary}"
+     target="_blank" rel="noopener" aria-label="${labels.linkedin}">
     <i class="fa fa-linkedin"></i>
   </a>
 
-  <a class="post__share-link" href="https://twitter.com/intent/tweet?text=${title}&url=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.twitter}">
+  <a class="post__share-link"
+     href="https://twitter.com/intent/tweet?text=${safeTitle}&url=${safeUrl}"
+     target="_blank" rel="noopener" aria-label="${labels.twitter}">
     <i class="fa fa-twitter"></i>
   </a>
 
-  <a class="post__share-link" href="https://www.facebook.com/sharer/sharer.php?u=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.facebook}">
+  <a class="post__share-link"
+     href="https://www.facebook.com/sharer/sharer.php?u=${safeUrl}"
+     target="_blank" rel="noopener" aria-label="${labels.facebook}">
     <i class="fa fa-facebook"></i>
   </a>
 
   <a class="post__share-link"
-   href="https://api.whatsapp.com/send?text=${encodeURIComponent(`${title} ${pageUrl}`)}"
-   target="_blank"
-   rel="noopener"
-   aria-label="${labels.whatsapp}">
-  <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
-</a>
+     href="https://api.whatsapp.com/send?text=${whatsappText}"
+     target="_blank" rel="noopener" aria-label="${labels.whatsapp}">
+    <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
+  </a>
 
-  <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}" title="${labels.instagramHint}">
+  <button class="post__share-link" type="button" id="postShareInstagram"
+          aria-label="${labels.instagram}" title="${labels.instagramHint}">
     <i class="fa fa-instagram"></i>
   </button>
 `;
