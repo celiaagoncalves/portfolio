@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Background
+        ctx.fillStyle = '#0c0c14';
+        ctx.fillRect(0, 0, 1200, 630);
+
+        // Purple accent bar
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(0, 0, 8, 630);
+
+        // Circles
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.1)';
+        ctx.beginPath();
+        ctx.arc(1050, 100, 60, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.08)';
+        ctx.beginPath();
+        ctx.arc(150, 550, 80, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Blog box
+        ctx.strokeStyle = 'rgba(139, 92, 246, 0.3)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(100, 120, 280, 390);
+
+        // Text elements (blog icon area)
+        ctx.fillStyle = '#8b5cf6';
+        ctx.fillRect(130, 160, 220, 8);
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.fillRect(130, 190, 200, 6);
+        ctx.fillRect(130, 220, 180, 6);
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.fillRect(130, 280, 220, 6);
+        ctx.fillRect(130, 300, 220, 6);
+        ctx.fillRect(130, 320, 200, 6);
+        ctx.fillRect(130, 340, 150, 6);
+
+        // Main text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 72px Inter, sans-serif';
+        ctx.letterSpacing = '-1px';
+        ctx.fillText('Blog', 450, 220);
+
+        // Subtitle
+        ctx.fillStyle = '#8b5cf6';
+        ctx.font = '300 36px Inter, sans-serif';
+        ctx.fillText('Product Ownership', 450, 300);
+        ctx.fillText('Quality & Systems', 450, 350);
+
+        // URL
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.font = '18px Inter, sans-serif';
+        ctx.fillText('celiaagoncalves.github.io', 450, 520);
+
+        // Bottom accent
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.2)';
+        ctx.fillRect(0, 622, 1200, 8);
+
+        // Download as PNG
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'blog-thumbnail.png';
+        link.click();
+    </script>
+</body>
+
+</html>

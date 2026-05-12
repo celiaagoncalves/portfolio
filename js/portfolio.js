@@ -522,7 +522,8 @@ function renderPostShare(post) {
     linkedin: lang === 'pt' ? 'Partilhar no LinkedIn' : 'Share on LinkedIn',
     twitter:  lang === 'pt' ? 'Tweetar este post' : 'Tweet this post',
     facebook: lang === 'pt' ? 'Partilhar no Facebook' : 'Share on Facebook',
-    instagram: lang === 'pt' ? 'Copiar link para o Instagram' : 'Copy link for Instagram'
+    instagram: lang === 'pt' ? 'Copiar link para o Instagram' : 'Copy link for Instagram',
+    instagramHint: lang === 'pt' ? 'O Instagram não suporta partilha direta. Clica para copiar o link.' : 'Instagram doesn\'t support direct sharing. Click to copy the link.'
   };
 
   shareLinksEl.innerHTML = `
@@ -535,7 +536,7 @@ function renderPostShare(post) {
     <a class="post__share-link" href="https://www.facebook.com/sharer/sharer.php?u=${pageUrl}" target="_blank" rel="noopener" aria-label="${labels.facebook}">
       <i class="fa fa-facebook"></i>
     </a>
-    <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}">
+    <button class="post__share-link" type="button" id="postShareInstagram" aria-label="${labels.instagram}" title="${labels.instagramHint}">
       <i class="fa fa-instagram"></i>
     </button>
   `;
@@ -551,10 +552,13 @@ function renderPostShare(post) {
           window.prompt(lang === 'pt' ? 'Copiar link para o Instagram:' : 'Copy link for Instagram:', url);
         }
         instagramBtn.classList.add('copied');
-        instagramBtn.setAttribute('aria-label', lang === 'pt' ? 'Link copiado' : 'Link copied');
+        const copiedLabel = lang === 'pt' ? 'Link copiado! Cole na bio do Instagram.' : 'Link copied! Paste in Instagram bio.';
+        instagramBtn.setAttribute('aria-label', copiedLabel);
+        instagramBtn.setAttribute('title', copiedLabel);
         setTimeout(() => {
           instagramBtn.classList.remove('copied');
           instagramBtn.setAttribute('aria-label', labels.instagram);
+          instagramBtn.setAttribute('title', labels.instagramHint);
         }, 1800);
       } catch (error) {
         window.prompt(lang === 'pt' ? 'Copiar link para o Instagram:' : 'Copy link for Instagram:', url);
