@@ -528,38 +528,26 @@ function renderPostShare(post) {
   };
 
 
-// Helpers: descodifica só se fizer sentido (evita exceptions)
+// helper
 const safeDecode = (s) => {
-  try {
-    return decodeURIComponent(s);
-  } catch {
-    return s; // se não estiver percent-encoded, devolve como está
-  }
+  try { return decodeURIComponent(s); } catch { return s; }
 };
 
-// Helpers: descodifica só se fizer sentido (evita exceptions)
-const safeDecode = (s) => {
-  try {
-    return decodeURIComponent(s);
-  } catch {
-    return s; // se não estiver percent-encoded, devolve como está
-  }
-};
-
-// 1) versões "limpas" (para WhatsApp) — evita double-encoding
+// clean (evita %20 etc)
 const cleanTitle = safeDecode(title);
 const cleanUrl = safeDecode(pageUrl);
+const cleanSummary = safeDecode(summary);
 
-// 2) versões "seguras" (para query params de redes sociais)
+// encode para redes sociais
 const safeTitle = encodeURIComponent(cleanTitle);
-const safeSummary = encodeURIComponent(safeDecode(summary));
+const safeSummary = encodeURIComponent(cleanSummary);
 const safeUrl = encodeURIComponent(cleanUrl);
 
-// 3) WhatsApp (robusto)
+// whatsapp
 const whatsappUrl = new URL("https://wa.me/");
 whatsappUrl.searchParams.set("text", `${cleanTitle}\n\n${cleanUrl}`);
 
-// 4) Render
+// ✅ HTML CORRETO (atenção aqui)
 shareLinksEl.innerHTML = `
   <a class="post__share-link"
      href="https://www.linkedin.com/shareArticle?mini=true&url=${safeUrl}&title=${safeTitle}&summary=${safeSummary}"
@@ -567,19 +555,31 @@ shareLinksEl.innerHTML = `
     <i class="fa fa-linkedin"></i>
   </a>
 
-  <a class="post__share-linksharer/sharer.php?u=${safeUrl}
-    <i class="fa fa-facebook"></i>
+  <a class="post__share-link"
+     href="https://twitter.com/intent/tweet?text=${safeTitle}&url=${safeUrl}"
+     target="_blank" rel="noopener" aria-label="${labels.twitter}">
+    <i class="fa fa-twitter"></i>
   </a>
 
-  }"
+  <a class="post__share-link"
+     href="https://www.facebook.com/sharer/sharer.php?u=${safeUrl}"
+     target="_blank" rel="noopener" aria-label="${labels.facebook}">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  <a class="post__share-link"
+     href="${whatsappUrl}"
      target="_blank"
      rel="noopener"
      aria-label="${labels.whatsapp}">
-    /images/whatsapp.svg
+    <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
   </a>
 
-  <button class="post__share-link" type="button" id="postShareInstagram"
-          aria-label="${labels.instagram}" title="${labels.instagramHint}">
+  <button class="post__share-link"
+          type="button"
+          id="postShareInstagram"
+          aria-label="${labels.instagram}"
+          title="${labels.instagramHint}">
     <i class="fa fa-instagram"></i>
   </button>
 `;
