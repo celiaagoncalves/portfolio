@@ -528,11 +528,14 @@ function renderPostShare(post) {
   };
 
 
+// 1) 
 const safeTitle = encodeURIComponent(title);
 const safeSummary = encodeURIComponent(summary);
 const safeUrl = encodeURIComponent(pageUrl);
 
-const whatsappText = encodeURIComponent(`${title} ${pageUrl}`);
+// 2) 
+const whatsappUrl = new URL("https://wa.me/");
+whatsappUrl.searchParams.set("text", `${title}\n\n${pageUrl}`);
 
 shareLinksEl.innerHTML = `
   <a class="post__share-link"
@@ -552,10 +555,12 @@ shareLinksEl.innerHTML = `
      target="_blank" rel="noopener" aria-label="${labels.facebook}">
     <i class="fa fa-facebook"></i>
   </a>
-
+  
   <a class="post__share-link"
-     href="https://api.whatsapp.com/send?text=${whatsappText}"
-     target="_blank" rel="noopener" aria-label="${labels.whatsapp}">
+    href="${whatsappUrl.toString()}"
+    target="_blank"
+    rel="noopener"
+    aria-label="${labels.whatsapp}">
     <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
   </a>
 
