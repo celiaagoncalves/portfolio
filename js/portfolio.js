@@ -286,7 +286,10 @@ const T = {
 /* ============================================================
    Language toggle
    ============================================================ */
-let lang = localStorage.getItem('lang') || 'en';
+// On pre-rendered post pages (/p/{slug}.{lang}.html) the body carries
+// data-lang so the URL's locale wins over localStorage on first load.
+const __bodyLang = document.body && document.body.dataset.lang;
+let lang = __bodyLang || localStorage.getItem('lang') || 'en';
 
 function applyLang(l) {
     lang = l;
@@ -373,7 +376,10 @@ fills.forEach(f => skillObserver.observe(f));
 /* ============================================================
    Blog — GitHub API + marked.js
    ============================================================ */
-const REPO_API = 'https://api.github.com/repos/celiaagoncalves/celiaagoncalves.github.io/contents/posts';
+// One recursive tree call lists every blob in the repo. We filter to
+// posts/{slug}/{en,pt}.md. With one API call regardless of post count,
+// the anonymous rate limit (60/h) is never a concern.
+const REPO_TREE_API = 'https://api.github.com/repos/celiaagoncalves/celiaagoncalves.github.io/git/trees/master?recursive=1';
 const POSTS_RAW = 'https://raw.githubusercontent.com/celiaagoncalves/celiaagoncalves.github.io/master/posts';
 
 function parsePost(text, filename) {
@@ -438,7 +444,7 @@ async function renderListingFromGroups(grid) {
     const text = await fetch(file.download_url).then(r => r.text());
     const post = parsePost(text, file.name);
     post.baseSlug = slug;
-    post.locale   = file.name.match(/\.(en|pt)\.md$/)[1];
+    post.locale   = file.locale;
     return post;
   }));
   renderBlogGrid(grid);
@@ -448,17 +454,25 @@ async function loadBlogListing() {
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   try {
-    const res = await fetch(REPO_API, { headers: { Accept: 'application/vnd.github.v3+json' } });
+    const res = await fetch(REPO_TREE_API, { headers: { Accept: 'application/vnd.github.v3+json' } });
     if (!res.ok) { grid.innerHTML = ''; return; }
-    const files = await res.json();
+    const data = await res.json();
 
-    // Group locale-suffixed markdown files by base slug
+    // posts/{slug}/{en,pt}.md — folders starting with `_` (e.g. _template) are ignored.
     const groups = {};
-    files.forEach(f => {
-      const m = f.name.match(/^(.+)\.(en|pt)\.md$/);
+    (data.tree || []).forEach(entry => {
+      if (entry.type !== 'blob') return;
+      const m = entry.path.match(/^posts\/([^/]+)\/(en|pt)\.md$/);
       if (!m) return;
-      groups[m[1]] = groups[m[1]] || {};
-      groups[m[1]][m[2]] = f;
+      const slug = m[1];
+      if (slug.startsWith('_')) return;
+      const locale = m[2];
+      groups[slug] = groups[slug] || {};
+      groups[slug][locale] = {
+        name: `${locale}.md`,
+        locale,
+        download_url: `${POSTS_RAW}/${slug}/${locale}.md`,
+      };
     });
 
     window.__postGroups = groups;
@@ -470,9 +484,9 @@ async function loadBlogListing() {
 
 async function tryFetchPost(slug, locale) {
   try {
-    const res = await fetch(`${POSTS_RAW}/${encodeURIComponent(slug)}.${locale}.md`);
+    const res = await fetch(`${POSTS_RAW}/${encodeURIComponent(slug)}/${locale}.md`);
     if (!res.ok) return null;
-    const post = parsePost(await res.text(), `${slug}.${locale}.md`);
+    const post = parsePost(await res.text(), `${locale}.md`);
     post.baseSlug = slug;
     post.locale   = locale;
     return post;
@@ -486,7 +500,9 @@ async function loadSinglePost() {
   const pageTitleEl = document.getElementById('postPageTitle');
   if (!titleEl || !bodyEl) return;
 
-  const slug = new URLSearchParams(window.location.search).get('slug');
+  // Pre-rendered pages carry the slug on <body data-slug>; the SPA route
+  // (/post.html?slug=…) carries it on the query string.
+  const slug = document.body.dataset.slug || new URLSearchParams(window.location.search).get('slug');
   if (!slug) { window.location.href = 'blog.html'; return; }
 
   const alt  = lang === 'pt' ? 'en' : 'pt';
@@ -508,103 +524,158 @@ async function loadSinglePost() {
 
   if (!window.marked) await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
   bodyEl.innerHTML = window.marked.parse(post.body);
+  updatePostMeta(post);
   renderPostShare(post);
+}
+
+/* ============================================================
+   Post — canonical URL + meta tags
+   ============================================================ */
+const SITE_ORIGIN = 'https://celiaagoncalves.github.io';
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/blog-thumbnail.png`;
+
+function canonicalPostUrl(post) {
+  // Per-post pre-rendered file: scrapers find the right OG meta tags here.
+  const slug = post.baseSlug || post.slug;
+  const locale = post.locale || lang;
+  return `${SITE_ORIGIN}/p/${slug}.${locale}.html`;
+}
+
+function defaultSummary() {
+  return lang === 'pt'
+    ? 'Publicação no blog de Célia Gonçalves.'
+    : 'Blog post by Célia Gonçalves.';
+}
+
+function setMetaTag(attr, key, value) {
+  let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', value);
+}
+
+function setLinkRel(rel, href) {
+  let el = document.head.querySelector(`link[rel="${rel}"]`);
+  if (!el) {
+    el = document.createElement('link');
+    el.setAttribute('rel', rel);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('href', href);
+}
+
+// Keeps the browser tab + share-sheet metadata in sync with the loaded post.
+// Social scrapers don't run JS, so the pre-rendered /p/{slug}.{lang}.html
+// is what feeds LinkedIn/Facebook/Twitter previews — this only helps clients
+// that do parse JS (Slack, Discord, Web Share API).
+function updatePostMeta(post) {
+  if (!post) return;
+  const pageTitle = `${post.title} · Célia Gonçalves`;
+  const summary = post.summary || defaultSummary();
+  const canonical = canonicalPostUrl(post);
+  const ogLocale = (post.locale || lang) === 'pt' ? 'pt_PT' : 'en_GB';
+
+  document.title = pageTitle;
+  setMetaTag('name', 'description', summary);
+  setMetaTag('property', 'og:title', pageTitle);
+  setMetaTag('property', 'og:description', summary);
+  setMetaTag('property', 'og:url', canonical);
+  setMetaTag('property', 'og:type', 'article');
+  setMetaTag('property', 'og:locale', ogLocale);
+  setMetaTag('property', 'og:image', DEFAULT_OG_IMAGE);
+  setMetaTag('name', 'twitter:title', pageTitle);
+  setMetaTag('name', 'twitter:description', summary);
+  setMetaTag('name', 'twitter:image', DEFAULT_OG_IMAGE);
+  setLinkRel('canonical', canonical);
 }
 
 function renderPostShare(post) {
   const shareLinksEl = document.getElementById('postShareLinks');
   if (!shareLinksEl) return;
 
-  const pageUrl = encodeURIComponent(window.location.href);
-  const title   = encodeURIComponent(post.title);
-  const summary = encodeURIComponent(post.summary || 'Blog post by Célia Gonçalves.');
+  const canonical = canonicalPostUrl(post);
+  const title = post.title || 'Blog post';
+
+  const enc = encodeURIComponent;
+  const u = enc(canonical);
+  const t = enc(title);
+
+  // LinkedIn ignores title/summary params on shareArticle now — the preview
+  // comes from the OG tags on the shared URL. share-offsite is the current
+  // endpoint and only needs ?url=.
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+  const twitterUrl  = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+  const whatsappUrl = `https://wa.me/?text=${enc(`${title}\n\n${canonical}`)}`;
+
   const labels = {
-    linkedin: lang === 'pt' ? 'Partilhar no LinkedIn' : 'Share on LinkedIn',
-    twitter:  lang === 'pt' ? 'Tweetar este post' : 'Tweet this post',
-    facebook: lang === 'pt' ? 'Partilhar no Facebook' : 'Share on Facebook',
-    whatsapp: lang === 'pt' ? 'Partilhar no WhatsApp' : 'Share on WhatsApp',
-    instagram: lang === 'pt' ? 'Copiar link para o Instagram' : 'Copy link for Instagram',
-    instagramHint: lang === 'pt' ? 'O Instagram não suporta partilha direta. Clica para copiar o link.' : 'Instagram doesn\'t support direct sharing. Click to copy the link.'
+    linkedin:      lang === 'pt' ? 'Partilhar no LinkedIn' : 'Share on LinkedIn',
+    twitter:       lang === 'pt' ? 'Tweetar este post'     : 'Tweet this post',
+    facebook:      lang === 'pt' ? 'Partilhar no Facebook' : 'Share on Facebook',
+    whatsapp:      lang === 'pt' ? 'Partilhar no WhatsApp' : 'Share on WhatsApp',
+    instagram:     lang === 'pt' ? 'Copiar link para o Instagram' : 'Copy link for Instagram',
+    instagramHint: lang === 'pt'
+      ? 'O Instagram não suporta partilha direta. Clica para copiar o link.'
+      : "Instagram doesn't support direct sharing. Click to copy the link.",
+    copied:        lang === 'pt' ? 'Link copiado!' : 'Link copied!',
   };
 
+  shareLinksEl.innerHTML = `
+    <a class="post__share-link"
+       href="${linkedinUrl}"
+       target="_blank" rel="noopener" aria-label="${labels.linkedin}">
+      <i class="fa fa-linkedin"></i>
+    </a>
 
-// helper
-const safeDecode = (s) => {
-  try { return decodeURIComponent(s); } catch { return s; }
-};
+    <a class="post__share-link"
+       href="${twitterUrl}"
+       target="_blank" rel="noopener" aria-label="${labels.twitter}">
+      <i class="fa fa-twitter"></i>
+    </a>
 
-// clean (evita %20 etc)
-const cleanTitle = safeDecode(title);
-const cleanUrl = safeDecode(pageUrl);
-const cleanSummary = safeDecode(summary);
+    <a class="post__share-link"
+       href="${facebookUrl}"
+       target="_blank" rel="noopener" aria-label="${labels.facebook}">
+      <i class="fa fa-facebook"></i>
+    </a>
 
-// encode para redes sociais
-const safeTitle = encodeURIComponent(cleanTitle);
-const safeSummary = encodeURIComponent(cleanSummary);
-const safeUrl = encodeURIComponent(cleanUrl);
+    <a class="post__share-link"
+       href="${whatsappUrl}"
+       target="_blank" rel="noopener" aria-label="${labels.whatsapp}">
+      <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
+    </a>
 
-// whatsapp
-const whatsappUrl = new URL("https://wa.me/");
-whatsappUrl.searchParams.set("text", `${cleanTitle}\n\n${cleanUrl}`);
-
-// ✅ HTML CORRETO (atenção aqui)
-shareLinksEl.innerHTML = `
-  <a class="post__share-link"
-     href="https://www.linkedin.com/shareArticle?mini=true&url=${safeUrl}&title=${safeTitle}&summary=${safeSummary}"
-     target="_blank" rel="noopener" aria-label="${labels.linkedin}">
-    <i class="fa fa-linkedin"></i>
-  </a>
-
-  <a class="post__share-link"
-     href="https://twitter.com/intent/tweet?text=${safeTitle}&url=${safeUrl}"
-     target="_blank" rel="noopener" aria-label="${labels.twitter}">
-    <i class="fa fa-twitter"></i>
-  </a>
-
-  <a class="post__share-link"
-     href="https://www.facebook.com/sharer/sharer.php?u=${safeUrl}"
-     target="_blank" rel="noopener" aria-label="${labels.facebook}">
-    <i class="fa fa-facebook"></i>
-  </a>
-  
-  <a class="post__share-link"
-     href="${whatsappUrl}"
-     target="_blank"
-     rel="noopener"
-     aria-label="${labels.whatsapp}">
-    <img src="/images/whatsapp.svg" alt="WhatsApp" class="post__share-icon">
-  </a>
-
-  <button class="post__share-link"
-          type="button"
-          id="postShareInstagram"
-          aria-label="${labels.instagram}"
-          title="${labels.instagramHint}">
-    <i class="fa fa-instagram"></i>
-  </button>
-`;
+    <button class="post__share-link"
+            type="button"
+            id="postShareInstagram"
+            aria-label="${labels.instagram}"
+            title="${labels.instagramHint}">
+      <i class="fa fa-instagram"></i>
+    </button>
+  `;
 
   const instagramBtn = document.getElementById('postShareInstagram');
   if (instagramBtn) {
     instagramBtn.addEventListener('click', async () => {
-      const url = window.location.href;
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(url);
+          await navigator.clipboard.writeText(canonical);
         } else {
-          window.prompt(lang === 'pt' ? 'Copiar link para o Instagram:' : 'Copy link for Instagram:', url);
+          window.prompt(labels.instagram + ':', canonical);
         }
         instagramBtn.classList.add('copied');
-        const copiedLabel = lang === 'pt' ? 'Link copiado! Cole na bio do Instagram.' : 'Link copied! Paste in Instagram bio.';
-        instagramBtn.setAttribute('aria-label', copiedLabel);
-        instagramBtn.setAttribute('title', copiedLabel);
+        instagramBtn.setAttribute('aria-label', labels.copied);
+        instagramBtn.setAttribute('title', labels.copied);
         setTimeout(() => {
           instagramBtn.classList.remove('copied');
           instagramBtn.setAttribute('aria-label', labels.instagram);
           instagramBtn.setAttribute('title', labels.instagramHint);
         }, 1800);
-      } catch (error) {
-        window.prompt(lang === 'pt' ? 'Copiar link para o Instagram:' : 'Copy link for Instagram:', url);
+      } catch {
+        window.prompt(labels.instagram + ':', canonical);
       }
     });
   }

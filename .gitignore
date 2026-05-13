@@ -1,1 +1,5 @@
 CLAUDE.md
+
+# Pre-rendered post pages — generated at deploy time by
+# scripts/prerender-posts.mjs. Keep the repo clean of build output.
+/p/
