@@ -139,6 +139,7 @@ const T = {
         'blog.empty': 'No posts yet. Check back soon.',
         'post.back': '← Back to blog',
         'post.share': 'Share',
+        'post.toast.copied': 'Link copied to clipboard',
     },
 
     pt: {
@@ -280,6 +281,7 @@ const T = {
         'blog.empty': 'Ainda sem posts. Volta em breve.',
         'post.back': '← Voltar ao blog',
         'post.share': 'Partilhar',
+        'post.toast.copied': 'Link copiado para a área de transferência',
     }
 };
 
@@ -529,6 +531,30 @@ async function loadSinglePost() {
 }
 
 /* ============================================================
+   Toast — transient bottom-center notification
+   ============================================================ */
+let __toastEl = null;
+let __toastTimer = null;
+
+function showToast(message) {
+  if (!__toastEl) {
+    __toastEl = document.createElement('div');
+    __toastEl.className = 'toast';
+    __toastEl.setAttribute('role', 'status');
+    __toastEl.setAttribute('aria-live', 'polite');
+    document.body.appendChild(__toastEl);
+  }
+  __toastEl.textContent = message;
+  // Force reflow so the transition replays even when called twice quickly.
+  void __toastEl.offsetWidth;
+  __toastEl.classList.add('toast--visible');
+  if (__toastTimer) clearTimeout(__toastTimer);
+  __toastTimer = setTimeout(() => {
+    __toastEl.classList.remove('toast--visible');
+  }, 2200);
+}
+
+/* ============================================================
    Post — canonical URL + meta tags
    ============================================================ */
 const SITE_ORIGIN = 'https://celiaagoncalves.github.io';
@@ -638,6 +664,7 @@ function renderPostShare(post) {
 
     <a class="post__share-link"
        href="${facebookUrl}"
+       data-share="facebook"
        target="_blank" rel="noopener" aria-label="${labels.facebook}">
       <i class="fa fa-facebook"></i>
     </a>
@@ -666,6 +693,7 @@ function renderPostShare(post) {
         } else {
           window.prompt(labels.instagram + ':', canonical);
         }
+        showToast(T[lang]['post.toast.copied']);
         instagramBtn.classList.add('copied');
         instagramBtn.setAttribute('aria-label', labels.copied);
         instagramBtn.setAttribute('title', labels.copied);
@@ -676,6 +704,28 @@ function renderPostShare(post) {
         }, 1800);
       } catch {
         window.prompt(labels.instagram + ':', canonical);
+      }
+    });
+  }
+
+  // Facebook's sharer.php is unreliable on mobile (often forces login or
+  // silently fails inside the FB in-app browser). Where the Web Share API
+  // is available, intercept the click and open the native share sheet —
+  // the user can pick Facebook (or anything else) from there. On desktop
+  // browsers without navigator.share the original sharer.php URL still
+  // works, so the anchor's href is kept as the fallback.
+  const facebookLink = shareLinksEl.querySelector('[data-share="facebook"]');
+  if (facebookLink && typeof navigator.share === 'function') {
+    facebookLink.addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        await navigator.share({
+          title: post.title,
+          text: post.summary || defaultSummary(),
+          url: canonical,
+        });
+      } catch {
+        // User cancelled the share sheet — no-op.
       }
     });
   }

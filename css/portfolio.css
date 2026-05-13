@@ -1208,6 +1208,35 @@ strong {
     font-size: 16px;
 }
 
+/* ============================================================
+   TOAST — bottom-center notification (link copied, etc.)
+   ============================================================ */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    transform: translate(-50%, 20px);
+    background: var(--bg-surface);
+    color: #fff;
+    border: 1px solid var(--accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--accent-glow);
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    max-width: calc(100vw - 32px);
+    transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+}
+
+.toast--visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
 
 /* Active nav link (blog / post pages) */
 
